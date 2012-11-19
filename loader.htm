@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Orange Test Loader </title>
+<link rel="author" title="Orange" href="http://www.orange.com/" />
+<style type="text/css">
+	body {
+		background-color: lightgrey;
+	}
+    #Container
+    {
+        display: table;
+        width: 100%;
+    }
+    div
+    {
+       display: table-cell;
+    } 
+    #left
+    {
+        float: none;
+        text-align: left;
+    } 
+    #right
+    {
+        text-align: right;
+    } 
+</style>
+<script>
+var oTestFrame;
+
+var iUrl=0;
+var oTests;
+var oLog  = new Array();
+var oTimer;
+var bTimerRunning;
+var iCallbacks;
+
+function CheckForResult()
+{
+    iCallbacks++;
+
+    try
+    {
+        oTestWindow = window.parent.document.getElementById('test').contentWindow;
+
+        if (oTestWindow.document.readyState == "complete")
+        {
+            oPass = oTestWindow.document.getElementsByClassName("pass");
+            oFail = oTestWindow.document.getElementsByClassName("fail");
+
+            if (oPass.length > 0 && oFail.length == 0)
+            {
+                log('Pass');
+            }  
+            else if( oFail.length > 0)
+            {
+                log('Fail');
+            }
+        }
+    }
+    catch(e){}
+}
+
+function init()
+{
+    var uri  = "./tests-list.txt";
+   
+    xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange  = function()
+    { 
+        if(xmlhttp.readyState  == 4)
+        {
+            var fileData = xmlhttp.responseText;
+            oTests = fileData.split('\n');
+
+            for (var x=0;x<(oTests.length-1);x++)
+            {
+                oLog[x] = 'No Result';
+                oTests[x] = oTests[x].replace(/\r/, '');
+            }
+
+            oTestFrame = window.parent.document.getElementById('test');
+            oTestFrame.src = oTests[iUrl];
+            document.getElementById('CurrentTest').innerHTML =  "Test #" + (iUrl+1) + "/" + (oTests.length-1) + "(" + oLog[iUrl] + ") " + oTests[iUrl];
+
+            oTimer = setInterval("CheckForResult()", 5000);
+            bTimerRunning = true;
+            iCallbacks = 0;
+        }
+    }; 
+
+    xmlhttp.open("GET", uri, true);
+    xmlhttp.send(null);
+
+}
+
+function log(result)
+{
+    oLog[iUrl] = result;
+    next();
+}
+
+function next()
+{
+    if (bTimerRunning)
+    {
+        clearInterval(oTimer);
+        bTimerRunning = false;
+        iCallbacks = 0;
+    }
+
+    if (iUrl<(oTests.length-2))
+    {
+        iUrl++;
+        oTestFrame.src = oTests[iUrl] ;
+        document.getElementById('CurrentTest').innerHTML =  "Test #" + (iUrl+1) + "/" + (oTests.length-1) + "(" + oLog[iUrl] + ") " + oTests[iUrl];
+
+        oTimer = setInterval("CheckForResult()", 5000);
+        bTimerRunning = true;
+        iCallbacks = 0;
+    }
+    else
+    {
+        document.getElementById('CurrentTest').innerHTML = "Test #" + (iUrl+1) + "/" + (oTests.length-1) + "(" + oLog[iUrl] + ") " + oTests[iUrl];
+        oTestFrame.src = "./results.html";
+    }
+}
+
+function last()
+{
+    if (bTimerRunning)
+    {
+        clearInterval(oTimer);
+        bTimerRunning = false;
+        iCallbacks = 0;
+    }
+
+    if (iUrl>0)
+    {
+        iUrl--;
+        oTestFrame.src = oTests[iUrl] ;
+        document.getElementById('CurrentTest').innerHTML = "Test #" + (iUrl+1) + "/" + (oTests.length-1) + "(" + oLog[iUrl] + ") " + oTests[iUrl];
+    }
+    else
+    {
+        document.getElementById('CurrentTest').innerHTML = "Test #" + (iUrl+1) + "/" + (oTests.length-1) + "(" + oLog[iUrl] + ") " + oTests[iUrl];
+    }
+}
+
+function TestResults()
+{
+    results = new Array();
+    for (var x=0;x<oLog.length;x++)
+    {
+        results.push({test:oTests[x],log:oLog[x]});
+    }
+    return results;
+}
+</script>
+    </head>
+    <body onload='init();'>
+          <div id="CurrentTest"></div>
+          <div id="Container">
+            <div id="left">
+                <button id="Pass" accesskey="P" onclick="log('Pass');">Pass</button>
+                <button id="Fail" accesskey="F" onclick="log('Fail');">Fail</button>
+                <button id="Not Implemented" accesskey="F" onclick="log('Not Implemented');">Not Implemented</button>
+                <button id="last" accesskey="L" onclick="last();">&lt;&lt; Last</button>			
+                <button id="Next" accesskey="N" onclick="next();">Next &gt;&gt;</button>
+            </div>
+        </div>
+    </body>
+</html>

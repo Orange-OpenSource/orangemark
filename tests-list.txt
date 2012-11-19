@@ -1,0 +1,8 @@
+./2d/animated-frames/transition-left-top.html
+./2d/animated-frames/transition-left-top-width-height.html
+./2d/animated-frames/transition-left-top-opacity.html
+./2d/animated-frames/transition-left-top-border-radius.html
+./2d/animated-frames/transition-left-top-scale.html
+./2d/animated-frames/transition-left-top-skew.html
+./2d/animated-frames/transition-left-top-rotate.html
+./2d/animated-frames/transition-matrix.html
