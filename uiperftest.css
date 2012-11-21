@@ -23,3 +23,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     text-align: center;
 }
+
+h1 {
+	font-size: 12px;
+}

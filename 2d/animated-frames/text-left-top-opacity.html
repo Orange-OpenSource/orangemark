@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Transitions [left,top]</title>
+    <title>Text [left,top,opacity]</title>
     <link rel="stylesheet" type="text/css" href="../../uiperftest.css">
     <link rel="stylesheet" type="text/css" href="../../resources/testharness.css">
     <script type="text/javascript" src="../../resources/fpsmeter.js"></script>
@@ -16,7 +16,9 @@
       var timer;
       
       function startAnimation(index){
-        for(var i=0; i<(Math.pow(2, index-1)); i++) AnimatedFramesTest.addColoredFrame();
+        for(var i=0; i<(Math.pow(2, index-1)); i++) {
+			AnimatedFramesTest.addTextFrame('Text ' + (i+1) + ' in CSS3');
+		}
         setTimeout(function() {
                 updateFrames();
                 timer = setInterval(updateFrames,1000);
@@ -40,8 +42,8 @@
   </head>
   <body>
     <script>
-      AnimatedFramesTest.run("Transitions [left,top,opacity]",
-                             ['csstransitions'],
+      AnimatedFramesTest.run("Text [left,top,opacity]",
+                             ['csstransitions','opacity'],
                              startAnimation,
                              stopAnimation);
     </script>

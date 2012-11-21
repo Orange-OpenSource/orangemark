@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Transitions [left,top]</title>
+    <title>Image [left,top,opacity]</title>
     <link rel="stylesheet" type="text/css" href="../../uiperftest.css">
     <link rel="stylesheet" type="text/css" href="../../resources/testharness.css">
     <script type="text/javascript" src="../../resources/fpsmeter.js"></script>
@@ -16,7 +16,9 @@
       var timer;
       
       function startAnimation(index){
-        for(var i=0; i<(Math.pow(2, index-1)); i++) AnimatedFramesTest.addColoredFrame();
+        for(var i=0; i<(Math.pow(2, index-1)); i++) {
+			AnimatedFramesTest.addImageFrame('images/img'+ (i%18 + 1) +'.jpg');
+		}
         setTimeout(function() {
                 updateFrames();
                 timer = setInterval(updateFrames,1000);
@@ -28,8 +30,7 @@
         var frames= AnimatedFramesTest.frames;
         for (var i=0, l= frames.length; i< l; i++){
           AnimatedFramesTest.randomPositionFrame(frames[i]);
-          frames[i].style['width'] = Math.round(Math.random() * AnimatedFramesTest.frameWidth) + 'px';
-          frames[i].style['height'] = Math.round(Math.random() * AnimatedFramesTest.frameHeight) + 'px';
+          frames[i].style['opacity'] = Math.round(Math.random() * 100) / 100;
         }
       }
       
@@ -41,10 +42,10 @@
   </head>
   <body>
     <script>
-      AnimatedFramesTest.run("Transitions [left,top,width,height]",
-                            ['csstransitions'],
-                            startAnimation,
-                            stopAnimation);
+      AnimatedFramesTest.run("Image [left,top,opacity]",
+                             ['csstransitions','opacity'],
+                             startAnimation,
+                             stopAnimation);
     </script>
   </body>
 </html>

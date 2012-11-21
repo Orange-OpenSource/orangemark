@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Transitions [matrix]</title>
+    <title>Frame [left,top]</title>
     <link rel="stylesheet" type="text/css" href="../../uiperftest.css">
     <link rel="stylesheet" type="text/css" href="../../resources/testharness.css">
     <script type="text/javascript" src="../../resources/fpsmeter.js"></script>
@@ -16,8 +16,9 @@
       var timer;
       
       function startAnimation(index){
-        for(var i=0; i<(Math.pow(2, index-1)); i++) AnimatedFramesTest.addColoredFrame();
-        setTimeout(function() {
+        //for(var i=0; i<(5*index); i++) AnimatedFramesTest.addColoredFrame();
+        for(var i=0; i<Math.pow(2, index-1); i++) AnimatedFramesTest.addColoredFrame();
+		setTimeout(function() {
                 updateFrames();
                 timer = setInterval(updateFrames,1000);
             },
@@ -27,28 +28,23 @@
       function updateFrames () {
         var frames= AnimatedFramesTest.frames;
         for (var i=0, l= frames.length; i< l; i++){
-          //AnimatedFramesTest.randomPositionFrame(frames[i]);
-          frames[i].style[Modernizr.prefixed('transform')] = 'matrix(' + ((Math.random() * 180) - 90) / 100 + ', ' 
-				+ ((Math.random() * 180) - 90) / 100 + ', ' 
-				+ ((Math.random() * 180) - 90) / 100 + ', ' 
-				+ ((Math.random() * 180) - 90) / 100 + ', ' 
-				+ ((Math.random() * 180) - 90) / 100 + ', ' 
-				+ ((Math.random() * 180) - 90) / 100 + ')';
+          AnimatedFramesTest.randomPositionFrame(frames[i]);
         }
       }
       
       function stopAnimation(){
         clearInterval(timer);
+		
       }
       
     </script>
   </head>
   <body>
     <script>
-      AnimatedFramesTest.run("Transitions [matrix]",
-                             ['csstransitions','csstransforms'],
+      AnimatedFramesTest.run("Frame [left,top]",
+                             ['csstransitions'],
                              startAnimation,
-                             stopAnimation);
+                             stopAnimation, 5, 20);
     </script>
   </body>
 </html>

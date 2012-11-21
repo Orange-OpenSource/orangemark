@@ -41,25 +41,62 @@ var self = window.AnimatedFramesTest = {
         false);
     },
     randomPositionFrame : function (frame) {
-        frame.style['left']= Math.round((Math.random()*(UIPerfTest.contWidth-self.frameWidth)))+"px";
-        frame.style['top']= Math.round((Math.random()*(UIPerfTest.contHeight-self.frameHeight)))+"px";
+        frame.style['left']= Math.round((Math.random()*(UIPerfTest.contWidth-self.frameWidth)*0.9) + ((UIPerfTest.contHeight-self.frameHeight)*0.05) )+"px";
+        frame.style['top']= Math.round((Math.random()*(UIPerfTest.contHeight-self.frameHeight)*0.9) + ((UIPerfTest.contHeight-self.frameHeight)*0.05) )+"px";
     },
-    addColoredFrame : function (url) {
+    addColoredFrame : function () {
 		self.frameWidth = Math.round((UIPerfTest.contWidth)/5);
-		self.frameHeight = Math.round((UIPerfTest.contHeight)/5);
+		self.frameHeight = Math.round((UIPerfTest.contWidth)/5);
         var div= document.createElement("div");
         div.style['position'] = 'absolute';
         div.style['backgroundColor']= "rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
-		if (url) div.style['backgroundImage']= "url("+url+")";
         div.style['width']= self.frameWidth + "px";
         div.style['height']= self.frameHeight + "px";
         var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
-        //div.style[transitionProperty] = 'all 1s ease-in-out';
+        div.style[transitionProperty] = 'all 1s ease-in-out';
+        self.randomPositionFrame(div);
+        UIPerfTest.container.appendChild(div);
+        self.frames.push(div);
+    },
+	addImageFrame : function (url) {
+		self.frameWidth = Math.round((UIPerfTest.contWidth)/5);
+		self.frameHeight = Math.round((UIPerfTest.contWidth)/5);
+        var div= document.createElement("div");
+        div.style['position'] = 'absolute';
+		div.style['backgroundImage']= "url("+url+")";
+		div.style['backgroundSize']= self.frameWidth + "px " + self.frameHeight + "px";
+		div.style['backgroundRepeat']= "no-repeat";
+        div.style['width']= self.frameWidth + "px";
+        div.style['height']= self.frameHeight + "px";
+        var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
+        div.style[transitionProperty] = 'all 1s ease-in-out';
+        self.randomPositionFrame(div);
+        UIPerfTest.container.appendChild(div);
+        self.frames.push(div);
+    },
+	addTextFrame : function (text) {
+		text= text ? text : "Text in CSS3";
+		self.frameWidth = Math.round((UIPerfTest.contWidth)/5);
+		self.frameHeight = Math.round((UIPerfTest.contWidth)/5);
+        var div= document.createElement("div");
+        div.style['position'] = 'absolute';
+        div.style['backgroundColor']= "rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
+        div.style['color']= "rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
+		div.style['backgroundSize']= self.frameWidth + "px " + self.frameHeight + "px";
+		div.style['backgroundRepeat']= "no-repeat";
+        div.style['padding']= "5px";
+        div.style['fontSize']= "40px";
+        div.style['fontWeight']= "bolder";
+        div.style['width']= self.frameWidth + "px";
+        //div.style['height']= self.frameHeight + "px";
+		div.innerHTML= text; 
+        var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
         div.style[transitionProperty] = 'all 1s ease-in-out';
         self.randomPositionFrame(div);
         UIPerfTest.container.appendChild(div);
         self.frames.push(div);
     }
+	
 }
 
 })();

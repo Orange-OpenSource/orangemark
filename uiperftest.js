@@ -18,6 +18,7 @@
  
 // uiperftest.js
 
+
 (function(){
 
 // Test for Modernizr and fpsmeter
@@ -30,11 +31,17 @@ if(!window.FPSMeter){
     return;
 }
 
+var self = window.convertCamelCaseToCssAttrib = function(str) {
+	str.replace(/([A-Z])/g, function(str,m1){ return '-' + m1.toLowerCase(); }).replace(/^ms-/,'-ms-');
+	return str;
+}
+
+
 var self = window.UIPerfTest = {
-    //contWidth : 720,
-    //contHeight : 476,
-    contWidth : 420,
-    contHeight : 276,
+    contWidth : 720,
+    contHeight : 476,
+    //contWidth : 420,
+    //contHeight : 276,
     run : function (label,
                     prerequisites,
                     startCB,
@@ -113,7 +120,7 @@ var self = window.UIPerfTest = {
         // Add an fps meter progress meter event listener
         document.addEventListener('fps',
             function(evt) {
-                document.getElementById("results").innerHTML = "Current framerate: " + evt.fps + " fps";
+                document.getElementById("results").innerHTML = evt.fps + " fps";
                 fps.push(evt.fps);
             },
             false);
@@ -160,14 +167,6 @@ document.addEventListener('DOMContentLoaded',
                             var main = document.createElement('div');
                             main.id = 'main';
 							
-                            var title = document.createElement('h1');
-                            title.id = 'label';
-                            main.appendChild(title);
-							
-                            var results = document.createElement('div');
-                            results.id = 'results'
-                            main.appendChild(results);
-							
                             self.container = document.createElement('div');
                             self.container.id = 'container';
                             self.container.style['width'] = self.contWidth + 'px';
@@ -177,6 +176,17 @@ document.addEventListener('DOMContentLoaded',
                             self.container.style['marginLeft'] = 'auto';
                             self.container.style['marginRight'] = 'auto';
                             main.appendChild(self.container);
+							
+                            var title = document.createElement('p');
+                            title.id = 'label';
+                            main.appendChild(title);
+							
+							var results = document.createElement('div');
+                            results.id = 'results'
+							results.style['position'] = 'absolute';
+							results.style['top'] = '0px';
+							results.style['left'] = '0px';
+                            main.appendChild(results);
 							
                             var log = document.createElement('div');
                             log.id = 'log';

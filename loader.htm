@@ -32,6 +32,7 @@ var oTestFrame;
 var iUrl=0;
 var oTests;
 var oLog  = new Array();
+var oComment  = new Array();
 var oTimer;
 var bTimerRunning;
 var iCallbacks;
@@ -79,6 +80,7 @@ function init()
             {
                 oLog[x] = 'No Result';
                 oTests[x] = oTests[x].replace(/\r/, '');
+				oComment[x] = 'No comment';
             }
 
             oTestFrame = window.parent.document.getElementById('test');
@@ -99,6 +101,14 @@ function init()
 function log(result)
 {
     oLog[iUrl] = result;
+	comment = oTestWindow.document.getElementById('results').innerHTML;
+	nbPass = oTestWindow.document.getElementsByClassName("pass").length;
+    nbFail = oTestWindow.document.getElementsByClassName("fail").length;
+	nbPass = (nbPass==0) ? 0 : nbPass - 1;
+	nbFail = (nbFail==0) ? 0 : nbFail - 1;
+	//oComment[iUrl] = nbPass + "/" + (nbPass+nbFail) + " succeed (" + nbPass + " " + nbFail + ")";
+	oComment[iUrl] = nbPass + "/" + (nbPass+nbFail) + " succeed";
+	
     next();
 }
 
@@ -154,7 +164,7 @@ function TestResults()
     results = new Array();
     for (var x=0;x<oLog.length;x++)
     {
-        results.push({test:oTests[x],log:oLog[x]});
+        results.push({test:oTests[x],log:oLog[x],comment:oComment[x]});
     }
     return results;
 }

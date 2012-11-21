@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Transitions [left,top,rotate]</title>
+    <title>Frame [left,top,border-radius]</title>
     <link rel="stylesheet" type="text/css" href="../../uiperftest.css">
     <link rel="stylesheet" type="text/css" href="../../resources/testharness.css">
     <script type="text/javascript" src="../../resources/fpsmeter.js"></script>
@@ -28,7 +28,7 @@
         var frames= AnimatedFramesTest.frames;
         for (var i=0, l= frames.length; i< l; i++){
           AnimatedFramesTest.randomPositionFrame(frames[i]);
-          frames[i].style[Modernizr.prefixed('transform')] = 'rotate(' + Math.round(Math.random() * 180 - 360 ) + 'deg)';
+          frames[i].style['borderRadius'] = Math.round(Math.random() * 50) + '%';
         }
       }
       
@@ -40,10 +40,10 @@
   </head>
   <body>
     <script>
-      AnimatedFramesTest.run("Transitions [left,top,rotate]",
-                             ['csstransitions','csstransforms'],
-                             startAnimation,
-                             stopAnimation);
+      AnimatedFramesTest.run("Frame [left,top,border-radius]",
+                            ['csstransitions','borderradius'],
+                            startAnimation,
+                            stopAnimation);
     </script>
   </body>
 </html>
