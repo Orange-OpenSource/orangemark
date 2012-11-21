@@ -76,6 +76,30 @@ function init()
             var fileData = xmlhttp.responseText;
             oTests = fileData.split('\n');
 
+			// remove commented lines
+			var reg=new RegExp('^#','g');
+			for (var x=0;x<(oTests.length-1);) {
+				if (reg.test(oTests[x]) == true) {
+					oTests.splice(x, 1);
+					x--;
+				}
+				else {
+					x++;
+				}
+			}
+
+			// remove empty lines
+			var reg=new RegExp('^\\s*$','g');
+			for (var x=0;x<(oTests.length-1);) {
+				if (reg.test(oTests[x]) == true) {
+					oTests.splice(x, 1);
+					x--;
+				}
+				else {
+					x++;
+				}
+			}
+
             for (var x=0;x<(oTests.length-1);x++)
             {
                 oLog[x] = 'No Result';
