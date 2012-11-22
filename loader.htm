@@ -104,7 +104,7 @@ function init()
             {
                 oLog[x] = 'No Result';
                 oTests[x] = oTests[x].replace(/\r/, '');
-				oComment[x] = 'No comment';
+				oComment[x] = '0';
             }
 
             oTestFrame = window.parent.document.getElementById('test');
@@ -131,7 +131,7 @@ function log(result)
 	nbPass = (nbPass==0) ? 0 : nbPass - 1;
 	nbFail = (nbFail==0) ? 0 : nbFail - 1;
 	//oComment[iUrl] = nbPass + "/" + (nbPass+nbFail) + " succeed (" + nbPass + " " + nbFail + ")";
-	oComment[iUrl] = nbPass + "/" + (nbPass+nbFail) + " succeed";
+	oComment[iUrl] = nbPass + "/" + (nbPass+nbFail);
 	
     next();
 }

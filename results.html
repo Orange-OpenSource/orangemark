@@ -11,20 +11,23 @@
   </head>
   <body>
   <h1>Orange Browser Graphics Performance Test Suite</h1>
-  <h2>Test Run Description</h2>
+  <!-- <h2>Test Run Description</h2> -->
   <div id=summary></div>
-  <h2>Test Run Results</h2>
+  <!-- <h2>Test Run Results</h2> -->
   <div id=results>
   </div>
   </body>
   <script>
     var summary = document.getElementById('summary');
-    var sumStr = "<ul><li>User-Agent: " + window.navigator.userAgent+"</li>";
-    sumStr += "<li>Date: " + Date(); + "</li></ul>"
+    var sumStr = "<ul>";
+    var sumStr += "<li>User-Agent: " + window.navigator.userAgent+"</li>";
+    //sumStr += "<li>Date: " + Date(); + "</li>"
+    sumStr += "</ul>"
     summary.innerHTML = sumStr;
     var oLoaderFrame = window.parent.document.getElementById('loader');
     var results = oLoaderFrame.contentWindow.TestResults();
-    var resStr = "<ul>";
+    /*
+	var resStr = "<ul>";
     var passed = 0;
     var passedStr = "<ul>Passed Tests:";
     var failedStr = "<ul>Failed Tests:";
@@ -56,6 +59,42 @@
     resStr+="<li>Skipped/Not run: "+ (results.length - passed - failed)+ "/" + results.length; + "</li>";
     resStr +="</ul>";
     if(failed>0) resStr +="<div id='details'>" + failedStr + "</div>";
+	*/
+
+	var colorResult = new Array(
+			'rgb(255,0,0)',  
+//			'rgb(255,80,26)',
+			'rgb(255,102,0)',
+			'rgb(255,128,0)',
+			'rgb(255,128,0)',
+			'rgb(255,128,0)',
+			'rgb(204,153,0)',
+			'rgb(153,179,0)',
+			'rgb(102,204,0)',
+			'rgb(70,215,0)', 
+			'rgb(30,240,0)',   
+			'rgb(0,255,0)', 
+			'rgb(0,255,0)'
+		);
+    
+	resStr = "<table>";
+	for (var x=0;x<results.length;x++)
+    {
+        //var li ="<li><a href='"+results[x].test+"'>[" + (x+1) + "] " + results[x].test + "</a>  "  + results[x].comment + "</li>";
+		
+		value = 0.0;
+		try {
+			value = Math.round(parseFloat(results[x].comment));
+			//alert("value "+ results[x].comment +" = " + value);
+		}
+		catch(e) {}
+		
+		resStr += "<tr style='background-color: "+colorResult[value]+"'>";
+		resStr += "<td>"+(x+1)+"</td><td>"+results[x].test+"</td><td>"+results[x].comment+"</td></tr>";
+    }
+	resStr += "</table>";
+	
+	
     document.getElementById('results').innerHTML = resStr;
   </script>
 </html>
