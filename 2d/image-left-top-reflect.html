@@ -2,13 +2,13 @@
 <html>
   <head>
     <title>Image [left,top,reflect]</title>
-    <link rel="stylesheet" type="text/css" href="../../uiperftest.css">
-    <link rel="stylesheet" type="text/css" href="../../resources/testharness.css">
-    <script type="text/javascript" src="../../resources/fpsmeter.js"></script>
-    <script type="text/javascript" src="../../resources/testharness.js"></script>
-    <script type="text/javascript" src="../../resources/testharnessreport.js"></script>
-    <script type="text/javascript" src="../../resources/modernizr.js"></script>
-    <script type="text/javascript" src="../../uiperftest.js"></script>
+    <link rel="stylesheet" type="text/css" href="../uiperftest.css">
+    <link rel="stylesheet" type="text/css" href="../resources/testharness.css">
+    <script type="text/javascript" src="../resources/fpsmeter.js"></script>
+    <script type="text/javascript" src="../resources/testharness.js"></script>
+    <script type="text/javascript" src="../resources/testharnessreport.js"></script>
+    <script type="text/javascript" src="../resources/modernizr.js"></script>
+    <script type="text/javascript" src="../uiperftest.js"></script>
     <script type="text/javascript" src="./animatedframestest.js"></script>
 
     <script type="text/javascript">
@@ -17,7 +17,7 @@
       
       function startAnimation(index){
         for(var i=0; i<(Math.pow(2, index-1)); i++) {
-			AnimatedFramesTest.addImageFrame('images/img'+ (i%18 + 1) +'.jpg');
+			AnimatedFramesTest.addImageFrame('../images/movie/img'+ (i%18 + 1) +'.jpg');
 			AnimatedFramesTest.frames[i].style['webkitBoxReflect'] = 'below 0 -webkit-gradient(linear,0 0,0 100%,from(transparent),color-stop(.6,transparent),to(rgba(255, 255, 255, 0.3)))';
 		}
         setTimeout(function() {

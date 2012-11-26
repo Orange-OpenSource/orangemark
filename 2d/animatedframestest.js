@@ -76,7 +76,8 @@ var self = window.AnimatedFramesTest = {
         self.frames.push(div);
     },
 	addTextFrame : function (text) {
-		text= text ? text : "Text in CSS3";
+		self.frameNumber++;
+		text= text ? text : "Text " + self.frameNumber + " in CSS3";
 		self.frameWidth = Math.round((UIPerfTest.contWidth)/5);
 		self.frameHeight = Math.round((UIPerfTest.contWidth)/5);
         var div= document.createElement("div");
@@ -99,7 +100,7 @@ var self = window.AnimatedFramesTest = {
     },
 	addLogoFrame : function (number) {
 		number = number ? number : ((self.frameNumber++)%16);
-		url = 'images/logo/logo_'+ number +'.png'
+		url = '../images/logo/logo_'+ number +'.png'
 		self.frameWidth = 300;
 		self.frameHeight = 300;
         var div= document.createElement("div");
@@ -117,24 +118,19 @@ var self = window.AnimatedFramesTest = {
     },
 	addCarteFrame : function (big, number) {
 		big = big ? big : false;
-		number = number ? number : ((self.frameNumber++)%56) + 1;
+		number = number ? number : ((self.frameNumber++)%54) + 1;
 		if (big) {
 			self.frameWidth = 388;
 			self.frameHeight = 560;
+			url = '../images/cards_big/card_'+ number +'.png'
 		}
 		else {
 			self.frameWidth = 194;
 			self.frameHeight = 280;
+			url = '../images/cards_small/card_'+ number +'.png'
 		}
         var div= document.createElement("div");
         div.style['position'] = 'absolute';
-		if (big) {
-			url = 'images/cards_big/carte_'+ number +'.png'
-		}
-		else {
-			url = 'images/cards_small/carte_'+ number +'.png'
-		}
-		
 		div.style['backgroundImage']= "url("+url+")";
 		//div.style['backgroundSize']= self.frameWidth + "px " + self.frameHeight + "px";
 		div.style['backgroundRepeat']= "no-repeat";
