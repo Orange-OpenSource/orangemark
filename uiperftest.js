@@ -175,6 +175,7 @@ document.addEventListener('DOMContentLoaded',
                             self.container.style['position'] = 'relative';
                             self.container.style['marginLeft'] = 'auto';
                             self.container.style['marginRight'] = 'auto';
+                            self.container.style['overflow'] = 'hidden';
                             main.appendChild(self.container);
 							
                             var title = document.createElement('p');

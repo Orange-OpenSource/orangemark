@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Frame [left,top,reflect]</title>
+    <link rel="stylesheet" type="text/css" href="../uiperftest.css">
+    <link rel="stylesheet" type="text/css" href="../resources/testharness.css">
+    <script type="text/javascript" src="../resources/fpsmeter.js"></script>
+    <script type="text/javascript" src="../resources/testharness.js"></script>
+    <script type="text/javascript" src="../resources/testharnessreport.js"></script>
+    <script type="text/javascript" src="../resources/modernizr.js"></script>
+    <script type="text/javascript" src="../uiperftest.js"></script>
+    <script type="text/javascript" src="./animatedframestest.js"></script>
+
+    <script type="text/javascript">
+      
+      var timer;
+      
+      function startAnimation(index){
+        for(var i=0; i<(Math.pow(2, index-1)); i++) {
+			AnimatedFramesTest.addColoredFrame();
+			AnimatedFramesTest.frames[i].style['webkitBoxReflect'] = 'below 0 -webkit-gradient(linear,0 0,0 100%,from(transparent),color-stop(.6,transparent),to(rgba(255, 255, 255, 0.3)))';
+		}
+        setTimeout(function() {
+                updateFrames();
+                timer = setInterval(updateFrames,1000);
+            },
+            10);
+      }
+      
+      function updateFrames () {
+        var frames= AnimatedFramesTest.frames;
+        for (var i=0, l= frames.length; i< l; i++){
+          AnimatedFramesTest.randomPositionFrame(frames[i]);
+		  AnimatedFramesTest.frames[i].style['webkitBoxReflect'] = 'below 0 -webkit-gradient(linear,0 0,0 100%,from(transparent),color-stop(.6,transparent),to(rgba(255, 255, 255, 0.3)))';
+        }
+      }
+      
+      function stopAnimation(){
+        clearInterval(timer);
+      }
+      
+    </script>
+  </head>
+  <body>
+    <script>
+      AnimatedFramesTest.run("Frame [left,top,reflect]",
+                             ['csstransitions','cssreflections'],
+                             startAnimation,
+                             stopAnimation);
+    </script>
+  </body>
+</html>

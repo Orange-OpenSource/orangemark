@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image [rotateZ]</title>
+    <link rel="stylesheet" type="text/css" href="../uiperftest.css">
+    <link rel="stylesheet" type="text/css" href="../resources/testharness.css">
+    <script type="text/javascript" src="../resources/fpsmeter.js"></script>
+    <script type="text/javascript" src="../resources/testharness.js"></script>
+    <script type="text/javascript" src="../resources/testharnessreport.js"></script>
+    <script type="text/javascript" src="../resources/modernizr.js"></script>
+    <script type="text/javascript" src="../uiperftest.js"></script>
+    <script type="text/javascript" src="./animated3dobjectstest.js"></script>
+
+    <script type="text/javascript">
+      
+      var timer;
+      
+      function startAnimation(index){
+        for(var i=0; i<(Math.pow(2, index-1)); i++) {
+			Animated3dObjectsTest.add3dLogoFrame();
+		}
+        setTimeout(function() {
+                updateObjects();
+                timer = setInterval(updateObjects,1000);
+            },
+            10);
+      }
+      
+      function updateObjects () {
+        var objects3d= Animated3dObjectsTest.objects3d;
+        for (var i=0, l= objects3d.length; i< l; i++){
+		  //Animated3dObjectsTest.randomPositionObject(objects3d[i]);
+          objects3d[i].style[Modernizr.prefixed('transform')] = 'rotateZ( ' + Math.round(Math.random()*360 - 180) + 'deg )';
+        }
+      }
+      
+      function stopAnimation(){
+        clearInterval(timer);
+      }
+      
+    </script>
+  </head>
+  <body>
+    <script>
+      Animated3dObjectsTest.run("Image [rotateZ]",
+                             ['csstransitions','csstransforms','csstransforms3d'],
+                             startAnimation,
+                             stopAnimation);
+    </script>
+  </body>
+</html>

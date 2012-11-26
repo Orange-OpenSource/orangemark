@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Frame [matrix]</title>
+    <title>Frame [left,top,matrix]</title>
     <link rel="stylesheet" type="text/css" href="../../uiperftest.css">
     <link rel="stylesheet" type="text/css" href="../../resources/testharness.css">
     <script type="text/javascript" src="../../resources/fpsmeter.js"></script>
@@ -27,13 +27,13 @@
       function updateFrames () {
         var frames= AnimatedFramesTest.frames;
         for (var i=0, l= frames.length; i< l; i++){
-          //AnimatedFramesTest.randomPositionFrame(frames[i]);
-          frames[i].style[Modernizr.prefixed('transform')] = 'matrix(' + ((Math.random() * 160) - 80) / 100 + ', ' 
-				+ ((Math.random() * 160) - 80) / 100 + ', ' 
-				+ ((Math.random() * 160) - 80) / 100 + ', ' 
-				+ ((Math.random() * 160) - 80) / 100 + ', ' 
-				+ ((Math.random() * 160) - 80) / 100 + ', ' 
-				+ ((Math.random() * 160) - 80) / 100 + ')';
+          AnimatedFramesTest.randomPositionFrame(frames[i]);
+          frames[i].style[Modernizr.prefixed('transform')] = 'matrix(' + ((Math.random() * 100) - 50) / 100 + ', ' 
+				+ ((Math.random() * 100) - 50) / 100 + ', ' 
+				+ ((Math.random() * 100) - 50) / 100 + ', ' 
+				+ ((Math.random() * 100) - 50) / 100 + ', ' 
+				+ ((Math.random() * 100) - 50) / 100 + ', ' 
+				+ ((Math.random() * 100) - 50) / 100 + ')';
         }
       }
       
@@ -45,7 +45,7 @@
   </head>
   <body>
     <script>
-      AnimatedFramesTest.run("Transitions [matrix]",
+      AnimatedFramesTest.run("Frame [left,top,matrix]",
                              ['csstransitions','csstransforms'],
                              startAnimation,
                              stopAnimation);

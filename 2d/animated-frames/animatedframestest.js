@@ -29,6 +29,7 @@ if(!window.UIPerfTest){
 var self = window.AnimatedFramesTest = {
     frameWidth : 300,
     frameHeight : 300,
+	frameNumber : 0,
     frames : new Array(),
     run : function (label,
                     prerequisites,
@@ -45,8 +46,8 @@ var self = window.AnimatedFramesTest = {
         frame.style['top']= Math.round((Math.random()*(UIPerfTest.contHeight-self.frameHeight)*0.9) + ((UIPerfTest.contHeight-self.frameHeight)*0.05) )+"px";
     },
     addColoredFrame : function () {
-		self.frameWidth = Math.round((UIPerfTest.contWidth)/5);
-		self.frameHeight = Math.round((UIPerfTest.contWidth)/5);
+		//self.frameWidth = Math.round((UIPerfTest.contWidth)/5);
+		//self.frameHeight = Math.round((UIPerfTest.contWidth)/5);
         var div= document.createElement("div");
         div.style['position'] = 'absolute';
         div.style['backgroundColor']= "rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
@@ -59,8 +60,8 @@ var self = window.AnimatedFramesTest = {
         self.frames.push(div);
     },
 	addImageFrame : function (url) {
-		self.frameWidth = Math.round((UIPerfTest.contWidth)/5);
-		self.frameHeight = Math.round((UIPerfTest.contWidth)/5);
+		self.frameWidth = Math.round((UIPerfTest.contWidth)/3);
+		self.frameHeight = Math.round((UIPerfTest.contWidth)/3);
         var div= document.createElement("div");
         div.style['position'] = 'absolute';
 		div.style['backgroundImage']= "url("+url+")";
@@ -90,6 +91,55 @@ var self = window.AnimatedFramesTest = {
         div.style['width']= self.frameWidth + "px";
         //div.style['height']= self.frameHeight + "px";
 		div.innerHTML= text; 
+        var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
+        div.style[transitionProperty] = 'all 1s ease-in-out';
+        self.randomPositionFrame(div);
+        UIPerfTest.container.appendChild(div);
+        self.frames.push(div);
+    },
+	addLogoFrame : function (number) {
+		number = number ? number : ((self.frameNumber++)%16);
+		url = 'images/logo/logo_'+ number +'.png'
+		self.frameWidth = 300;
+		self.frameHeight = 300;
+        var div= document.createElement("div");
+        div.style['position'] = 'absolute';
+		div.style['backgroundImage']= "url("+url+")";
+		//div.style['backgroundSize']= self.frameWidth + "px " + self.frameHeight + "px";
+		div.style['backgroundRepeat']= "no-repeat";
+        div.style['width']= self.frameWidth + "px";
+        div.style['height']= self.frameHeight + "px";
+        var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
+        div.style[transitionProperty] = 'all 1s ease-in-out';
+        self.randomPositionFrame(div);
+        UIPerfTest.container.appendChild(div);
+        self.frames.push(div);
+    },
+	addCarteFrame : function (big, number) {
+		big = big ? big : false;
+		number = number ? number : ((self.frameNumber++)%56) + 1;
+		if (big) {
+			self.frameWidth = 388;
+			self.frameHeight = 560;
+		}
+		else {
+			self.frameWidth = 194;
+			self.frameHeight = 280;
+		}
+        var div= document.createElement("div");
+        div.style['position'] = 'absolute';
+		if (big) {
+			url = 'images/cards_big/carte_'+ number +'.png'
+		}
+		else {
+			url = 'images/cards_small/carte_'+ number +'.png'
+		}
+		
+		div.style['backgroundImage']= "url("+url+")";
+		//div.style['backgroundSize']= self.frameWidth + "px " + self.frameHeight + "px";
+		div.style['backgroundRepeat']= "no-repeat";
+        div.style['width']= self.frameWidth + "px";
+        div.style['height']= self.frameHeight + "px";
         var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
         div.style[transitionProperty] = 'all 1s ease-in-out';
         self.randomPositionFrame(div);
