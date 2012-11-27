@@ -1,20 +1,20 @@
-/*
- *  Copyright (C) 2012 Orange
- *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2 of the License, or (at your option) any later version.
- *
- *  This library is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
- */
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
  
 // animated3dobjectstest.js
 
@@ -183,7 +183,35 @@ var self = window.Animated3dObjectsTest = {
         self.randomPositionObject(div);
         UIPerfTest.container.appendChild(div);
         self.objects3d.push(div);
-    },	
+    },
+	makeCarouselObject : function (number, div, url, urlMax) {
+		var figures = new Array();
+		var radius = 0;
+		if (number>=4) {
+			for (var i=0;i<Math.round(number);i++) {
+				var figure= document.createElement("div");
+				radius = Math.round(self.frameWidth * number/6.284);
+				if (url) {
+					var urlTmp = url.replace(/#/g,(i%urlMax)+1);
+					figure.style['backgroundImage']= "url("+urlTmp+")";
+					figure.style['backgroundSize']= self.frameWidth + "px " + self.frameHeight + "px";
+					figure.style['backgroundRepeat']= "no-repeat";
+				}
+				else {
+					figure.style['backgroundColor']= "rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
+				}
+				figure.style['width']= self.frameWidth + "px";
+				figure.style['height']= self.frameHeight + "px";
+				figure.style['position']= "absolute";
+				figure.style['background']= "hsla(   " + Math.round((360/number)*i) + ", 100%, 50%, 0.8 );";
+				figure.style[Modernizr.prefixed('transform')]= "translateX( -" + (self.frameWidth/2) + "px ) rotateY(   "+ Math.round((360/number)*i) +"deg ) translateZ( "+ radius +"px )";
+				//figures.push(figure);
+				div.appendChild(figure);
+			}
+			self.makeCarouselObject(Math.round(number/2), div, url, urlMax);			
+		}
+		return radius;
+	},
 	addColoredCarouselObject : function (number) {
 		number = number ? number : 9;
 		self.frameWidth = 300;
@@ -194,20 +222,7 @@ var self = window.Animated3dObjectsTest = {
         var transformStyleProperty = window.Modernizr ? Modernizr.prefixed('transformStyle') : 'webkitTransformStyle';
         div.style[transformStyleProperty] = 'preserve-3d';
         div.style['position'] = 'absolute';
-		for (var i=0;i<number;i++) {
-			var figure= document.createElement("div");
-			var radius = Math.round(self.frameWidth * number/6.284);
-			figure.style['backgroundColor']= "rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
-			//figure.style['backgroundImage']= "url("+url+")";
-			//figure.style['backgroundSize']= self.frameWidth + "px " + self.frameHeight + "px";
-			//figure.style['backgroundRepeat']= "no-repeat";
-			figure.style['width']= self.frameWidth + "px";
-			figure.style['height']= self.frameHeight + "px";
-			figure.style['position']= "absolute";
-			figure.style['background']= "hsla(   " + Math.round((360/number)*i) + ", 100%, 50%, 0.8 );";
-			figure.style[Modernizr.prefixed('transform')]= "translateX( -" + (self.frameWidth/2) + "px ) rotateY(   "+ Math.round((360/number)*i) +"deg ) translateZ( "+ radius +"px )";
-			div.appendChild(figure);
-		}
+		var radius = self.makeCarouselObject(number, div);
 		self.constant = " rotateX( -25deg ) translateZ( -" + radius + "px )";
 		div.style[Modernizr.prefixed('transform')]= self.constant;
 		div.style['top']= Math.round(UIPerfTest.contHeight/2 - self.frameHeight/2) + "px";
@@ -228,22 +243,7 @@ var self = window.Animated3dObjectsTest = {
         var transformStyleProperty = window.Modernizr ? Modernizr.prefixed('transformStyle') : 'webkitTransformStyle';
         div.style[transformStyleProperty] = 'preserve-3d';
         div.style['position'] = 'absolute';
-		for (var i=0;i<number;i++) {
-			var figure= document.createElement("div");
-			var radius = Math.round(self.frameWidth * number/6.284);
-			var urlFront = '../images/cards_small/card_'+ ((i%54) + 1) +'.png';
-			//figure.style['backgroundColor']= "rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
-			
-			figure.style['backgroundImage']= "url("+urlFront+")";
-			//figure.style['backgroundSize']= self.frameWidth + "px " + self.frameHeight + "px";
-			//figure.style['backgroundRepeat']= "no-repeat";
-			figure.style['width']= self.frameWidth + "px";
-			figure.style['height']= self.frameHeight + "px";
-			figure.style['position']= "absolute";
-			figure.style['background']= "hsla(   " + Math.round((360/number)*i) + ", 100%, 50%, 0.8 );";
-			figure.style[Modernizr.prefixed('transform')]= "translateX( -" + (self.frameWidth/2) + "px )  rotateY(   "+ Math.round((360/number)*i) +"deg ) translateZ( "+ radius +"px ) ";
-			div.appendChild(figure);
-		}
+		var radius = self.makeCarouselObject(number, div, '../images/cards_small/card_#.png', 54);
 		self.constant = " rotateX( -25deg ) translateZ( -" + radius + "px )";
 		div.style[Modernizr.prefixed('transform')] = self.constant;
 		div.style['top']= Math.round(UIPerfTest.contHeight/2 - self.frameHeight/2) + "px";
