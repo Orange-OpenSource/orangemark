@@ -39,10 +39,18 @@
 			'rgb(0,255,0)'
 		);
     
-	resStr = "<table>";
-		resStr += "<tr><td>#</td><td>url</td><td>score</td></tr>";
+	
+	resStr = '<div style="float:left">';
+	//resStr += '<div style="float:left;margin-right:40px;"><table><tr><td>#</td><td>url</td><td>score</td></tr>';
 	for (var x=0;x<results.length;x++)
     {
+		if (x%Math.round(results.length/3)==0) {
+			if (x!=0) {
+				resStr += '</table></div>';
+			}
+			resStr += '<div style="float:left;margin-right:40px;"><table><tr><td>#</td><td>url</td><td>score</td></tr>';
+		}
+
 		value = 0.0;
 		try {
 			value = Math.round(parseFloat(results[x].comment));
@@ -51,9 +59,10 @@
 		
 		resStr += "<tr style='background-color: "+colorResult[value]+"'>";
 		resStr += "<td>"+(x+1)+"</td><td>"+results[x].test+"</td><td>"+results[x].comment+"</td></tr>";
+		
     }
-	resStr += "</table>";
-	
+	resStr += "</table></div>";
+	resStr += '</div>';
 	
     document.getElementById('results').innerHTML = resStr;
   </script>
