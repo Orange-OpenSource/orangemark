@@ -17,8 +17,7 @@
       
       function startAnimation(index){
         for(var i=0; i<(Math.pow(2, index-1)); i++) {
-			AnimatedFramesTest.addImageFrame('../images/movie/img'+ (i%18 + 1) +'.jpg');
-			//AnimatedFramesTest.frames[i].style['webkitBoxReflect'] = 'below 0 -webkit-gradient(linear,0 0,0 100%,from(transparent),color-stop(.6,transparent),to(rgba(255, 255, 255, 0.3)))';
+			AnimatedFramesTest.addLogoFrame();
 		}
         setTimeout(function() {
                 updateFrames();

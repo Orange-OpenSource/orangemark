@@ -17,7 +17,7 @@
       
       function startAnimation(index){
         for(var i=0; i<(Math.pow(2, index-1)); i++) {
-			AnimatedFramesTest.addImageFrame('../images/logo/logo_'+ (i%16) +'.png');
+			AnimatedFramesTest.addLogoFrame();
 		}
         setTimeout(function() {
                 updateFrames();
