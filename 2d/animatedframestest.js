@@ -98,24 +98,6 @@ var self = window.AnimatedFramesTest = {
         UIPerfTest.container.appendChild(div);
         self.frames.push(div);
     },
-	addLogoFrame : function (number) {
-		number = number ? number : ((self.frameNumber++)%16);
-		url = '../images/logo/logo_'+ number +'.png'
-		self.frameWidth = 300;
-		self.frameHeight = 300;
-        var div= document.createElement("div");
-        div.style['position'] = 'absolute';
-		div.style['backgroundImage']= "url("+url+")";
-		//div.style['backgroundSize']= self.frameWidth + "px " + self.frameHeight + "px";
-		div.style['backgroundRepeat']= "no-repeat";
-        div.style['width']= self.frameWidth + "px";
-        div.style['height']= self.frameHeight + "px";
-        var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
-        div.style[transitionProperty] = 'all 1s ease-in-out';
-        self.randomPositionFrame(div);
-        UIPerfTest.container.appendChild(div);
-        self.frames.push(div);
-    },
 	addCarteFrame : function (big, number) {
 		big = big ? big : false;
 		number = number ? number : ((self.frameNumber++)%54) + 1;

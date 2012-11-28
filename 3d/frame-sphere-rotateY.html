@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Carousel [rotateY]</title>
+    <title>FrameSphere [rotateY]</title>
     <link rel="stylesheet" type="text/css" href="../uiperftest.css">
     <link rel="stylesheet" type="text/css" href="../resources/testharness.css">
     <script type="text/javascript" src="../resources/fpsmeter.js"></script>
@@ -16,8 +16,7 @@
       var timer;
       
       function startAnimation(index){
-		Animated3dObjectsTest.addColoredCarouselObject(Math.pow(2, index+1));
-		//Animated3dObjectsTest.addCImageCarouselObject(Math.pow(2, index+1));
+		Animated3dObjectsTest.addColoredSphereObject(Math.pow(2, index+1));
 		
         setTimeout(function() {
                 updateObjects();
@@ -41,7 +40,7 @@
   </head>
   <body>
     <script>
-      Animated3dObjectsTest.run("Carousel [rotateY]",
+      Animated3dObjectsTest.run("FrameSphere [rotateY]",
                              ['csstransitions','csstransforms','csstransforms3d'],
                              startAnimation,
                              stopAnimation);
