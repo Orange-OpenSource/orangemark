@@ -1,12 +1,16 @@
-**********************************************
-* Orange HTML Test Suite                     *
-*                                            *
-* Copyright Orange 2011, All Rigths Reserved *
-**********************************************
+**************************************************
+* Orange Browser Graphics Performance Test Suite *
+*                                                *
+* Copyright Orange 2012, All Rigths Reserved     *
+**************************************************
 
-This test suite is based on the HTML WG Test Harness.
+Licensing & Credits
 
-This sample package contains only a few tests written by Orange, bu the framework is compatible with W3C tests.
+Unless explicitly specified differently (see below), this test suite is
+licensed under an MIT license (see ./LICENSE).
 
-Please look at ./resources/testharness.js for details about the test template.
-
+The test suite uses the following Open Source utility libraries:
+- Modernizr (http://modernizr.com/): MIT license 
+- perfmeter (https://github.com/kaizouman/fpsmeter): MIT license
+- W3C Test harness (http://w3c-test.org/resources/testharness.js) : Dual W3C & BSD license
+- SVG Cards (http://svg-cards.sourceforge.net/) : LGPL2.1 license.
