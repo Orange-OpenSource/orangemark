@@ -41,14 +41,13 @@
     
 	
 	resStr = '<div style="float:left">';
-	//resStr += '<div style="float:left;margin-right:40px;"><table><tr><td>#</td><td>url</td><td>score</td></tr>';
 	for (var x=0;x<results.length;x++)
     {
-		if (x%Math.round(results.length/3)==0) {
+		if (x%Math.round(1+results.length/3)==0) {
 			if (x!=0) {
 				resStr += '</table></div>';
 			}
-			resStr += '<div style="float:left;margin-right:40px;"><table><tr><td>#</td><td>url</td><td>score</td></tr>';
+			resStr += '<div style="float:left;margin-right:20px;"><table>';
 		}
 
 		value = 0.0;
