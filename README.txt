@@ -4,6 +4,8 @@
 * Copyright Orange 2012, All Rigths Reserved     *
 **************************************************
 
+Run the benckmark here: http://orange-opensource.github.com/orangemark/
+
 Licensing & Credits
 
 Unless explicitly specified differently (see below), this test suite is
