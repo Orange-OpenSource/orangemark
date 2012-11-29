@@ -18,7 +18,6 @@
 ./2d/image-left-top-opacity.html
 ./2d/image-left-top-reflect.html
 ./2d/image-left-top-rotate.html
-./2d/image-left-top-rotate-png.html
 ./2d/image-left-top-scale.html
 ./2d/image-left-top-skew.html
 ./2d/image-left-top-border-radius.html
