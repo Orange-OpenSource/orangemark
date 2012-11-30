@@ -177,7 +177,11 @@ document.addEventListener('DOMContentLoaded',
                             results.id = 'results'
 							results.style['position'] = 'absolute';
 							results.style['top'] = '0px';
-							results.style['left'] = '0px';
+							results.style['right'] = '0px';
+                            results.style['fontSize'] = '1.5em';                            
+                            results.style['fontFamily'] = 'letsgodigital, sans-serif';
+                            results.style['color'] = 'orange';
+                            results.style['backgroundColor'] = 'black';
                             main.appendChild(results);
 							
                             var log = document.createElement('div');

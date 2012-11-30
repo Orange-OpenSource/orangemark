@@ -24,6 +24,11 @@ body {
     text-align: center;
 }
 
+@font-face {
+    font-family: 'letsgodigital';
+    src: url("./fonts/Let's go Digital Regular.ttf") format("truetype");
+}
+
 h1 {
 	font-size: 12px;
 }
