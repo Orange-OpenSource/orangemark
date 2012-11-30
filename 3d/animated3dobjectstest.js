@@ -1,3 +1,5 @@
+// Copyright (C) 2012 Orange
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -38,8 +40,7 @@ var self = window.Animated3dObjectsTest = {
                     stopCB) {
         document.addEventListener('DOMContentLoaded',
         function (evt) {
-			var perspectiveProperty = window.Modernizr ? Modernizr.prefixed('perspective') : 'webkitPerspective';
-			document.getElementById("container").style[perspectiveProperty] = 500;
+			document.getElementById("container").style[Modernizr.prefixed('perspective')] = 500;
             UIPerfTest.run(label,prerequisites,startCB,stopCB);
         },
         false);
@@ -52,10 +53,8 @@ var self = window.Animated3dObjectsTest = {
 		//self.frameWidth = Math.round((UIPerfTest.contWidth)/5);
 		//self.frameHeight = Math.round((UIPerfTest.contWidth)/5);
         var div= document.createElement("div");
-        var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
-        div.style[transitionProperty] = 'all 1s ease-in-out';
-        var transformStyleProperty = window.Modernizr ? Modernizr.prefixed('transformStyle') : 'webkitTransformStyle';
-        div.style[transformStyleProperty] = 'preserve-3d';
+        div.style[Modernizr.prefixed('transition')] = 'all 1s ease-in-out';
+        div.style[Modernizr.prefixed('transformStyle')] = 'preserve-3d';
         div.style['position'] = 'absolute';
 		var frame= document.createElement("div");
         frame.style['backgroundColor']= "rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
@@ -70,9 +69,8 @@ var self = window.Animated3dObjectsTest = {
 		self.frameWidth = Math.round((UIPerfTest.contWidth)/3);
 		self.frameHeight = Math.round((UIPerfTest.contWidth)/3);
         var div= document.createElement("div");
-        var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
-        div.style[transitionProperty] = 'all 1s ease-in-out';
-        var transformStyleProperty = window.Modernizr ? Modernizr.prefixed('transformStyle') : 'webkitTransformStyle';
+        div.style[Modernizr.prefixed('transition')] = 'all 1s ease-in-out';
+        div.style[Modernizr.prefixed('transformStyle')] = 'preserve-3d';
         div.style[transformStyleProperty] = 'preserve-3d';
         div.style['position'] = 'absolute';
 		var frame= document.createElement("div");
@@ -90,22 +88,19 @@ var self = window.Animated3dObjectsTest = {
 	add3dTextFrame : function (text) {
 		self.frameNumber++;
 		text= text ? text : "Text " + self.frameNumber + " in CSS3";
-		self.frameWidth = Math.round((UIPerfTest.contWidth)/5);
-		self.frameHeight = Math.round((UIPerfTest.contWidth)/5);
         var div= document.createElement("div");
-        var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
-        div.style[transitionProperty] = 'all 1s ease-in-out';
-        var transformStyleProperty = window.Modernizr ? Modernizr.prefixed('transformStyle') : 'webkitTransformStyle';
-        div.style[transformStyleProperty] = 'preserve-3d';
+        div.style[Modernizr.prefixed('transition')] = 'all 1s ease-in-out';
+        div.style[Modernizr.prefixed('transformStyle')] = 'preserve-3d';
         div.style['position'] = 'absolute';
 		var frame= document.createElement("div");
         frame.style['backgroundColor']= "rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
         frame.style['color']= "rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
         div.style['padding']= "5px";
-        div.style['fontSize']= "40px";
+        div.style['fontSize']= "80px";
         div.style['fontWeight']= "bolder";
+		div.style['verticalAlign']= "middle";
         div.style['width']= self.frameWidth + "px";
-        //div.style['height']= self.frameHeight + "px";
+        div.style['height']= self.frameHeight + "px";
 		frame.innerHTML= text; 
 		div.appendChild(frame);
         self.randomPositionObject(div);
@@ -126,10 +121,8 @@ var self = window.Animated3dObjectsTest = {
 			self.frameHeight = 280;
 		}
         var div= document.createElement("div");
-        var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
-        div.style[transitionProperty] = 'all 1s ease-in-out';
-        var transformStyleProperty = window.Modernizr ? Modernizr.prefixed('transformStyle') : 'webkitTransformStyle';
-        div.style[transformStyleProperty] = 'preserve-3d';
+        div.style[Modernizr.prefixed('transition')] = 'all 1s ease-in-out';
+        div.style[Modernizr.prefixed('transformStyle')] = 'preserve-3d';
         div.style['position'] = 'absolute';
 		var frame= document.createElement("div");
 		frame.style['backgroundImage']= "url("+url+")";
@@ -158,8 +151,7 @@ var self = window.Animated3dObjectsTest = {
 		}
 
         var div= document.createElement("div");
-        var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
-        div.style[transitionProperty] = 'all 1s ease-in-out';
+        div.style[Modernizr.prefixed('transition')] = 'all 1s ease-in-out';
         div.style[Modernizr.prefixed('transformStyle')] = 'preserve-3d';
         div.style['position'] = 'absolute';
         div.style['width']= self.frameWidth + "px";
@@ -232,10 +224,8 @@ var self = window.Animated3dObjectsTest = {
 		self.frameWidth = 300;
 		self.frameHeight = 300;
         var div= document.createElement("div");
-        var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
-        div.style[transitionProperty] = 'all 1s ease-in-out';
-        var transformStyleProperty = window.Modernizr ? Modernizr.prefixed('transformStyle') : 'webkitTransformStyle';
-        div.style[transformStyleProperty] = 'preserve-3d';
+        div.style[Modernizr.prefixed('transition')] = 'all 1s ease-in-out';
+        div.style[Modernizr.prefixed('transformStyle')] = 'preserve-3d';
         div.style['position'] = 'absolute';
 		var radius = self.makeCarouselObject(number, div, text);
 		self.constant = " rotateX( -25deg ) translateZ( -" + radius + "px )";
@@ -250,10 +240,8 @@ var self = window.Animated3dObjectsTest = {
 		self.frameWidth = 194;
 		self.frameHeight = 280;
         var div= document.createElement("div");
-        var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
-        div.style[transitionProperty] = 'all 1s ease-in-out';
-        var transformStyleProperty = window.Modernizr ? Modernizr.prefixed('transformStyle') : 'webkitTransformStyle';
-        div.style[transformStyleProperty] = 'preserve-3d';
+        div.style[Modernizr.prefixed('transition')] = 'all 1s ease-in-out';
+        div.style[Modernizr.prefixed('transformStyle')] = 'preserve-3d';
         div.style['position'] = 'absolute';
 		var radius = self.makeCarouselObject(number, div, false, '../images/cards_small/card_#.png', 54);
 		self.constant = " rotateX( -25deg ) translateZ( -" + radius + "px )";
@@ -302,7 +290,6 @@ var self = window.Animated3dObjectsTest = {
 							figure.style['fontSize']= "64px";
 							figure.style['fontWeight']= "bolder";
 							figure.innerHTML = ++index;
-							//document.getElementById('container').innerHTML += "index=" + index + "<br/>";
 						}
 						if (square) {
 							figure.style['width']= self.frameWidth + "px";
@@ -334,10 +321,8 @@ var self = window.Animated3dObjectsTest = {
 		self.frameWidth = 300;
 		self.frameHeight = 300;
         var div= document.createElement("div");
-        var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
-        div.style[transitionProperty] = 'all 1s ease-in-out';
-        var transformStyleProperty = window.Modernizr ? Modernizr.prefixed('transformStyle') : 'webkitTransformStyle';
-        div.style[transformStyleProperty] = 'preserve-3d';
+        div.style[Modernizr.prefixed('transition')] = 'all 1s ease-in-out';
+        div.style[Modernizr.prefixed('transformStyle')] = 'preserve-3d';
         div.style['position'] = 'absolute';
 		var radius = self.makeSphereObject(number, div, false, text);
 		self.constant = " rotateX( -45deg ) translateZ( -" + (2*radius) + "px ) translateY( " + (2*radius) + "px )";
@@ -352,10 +337,8 @@ var self = window.Animated3dObjectsTest = {
 		self.frameWidth = 194;
 		self.frameHeight = 280;
         var div= document.createElement("div");
-        var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
-        div.style[transitionProperty] = 'all 1s ease-in-out';
-        var transformStyleProperty = window.Modernizr ? Modernizr.prefixed('transformStyle') : 'webkitTransformStyle';
-        div.style[transformStyleProperty] = 'preserve-3d';
+        div.style[Modernizr.prefixed('transition')] = 'all 1s ease-in-out';
+        div.style[Modernizr.prefixed('transformStyle')] = 'preserve-3d';
         div.style['position'] = 'absolute';
 		var radius = self.makeSphereObject(number, div, true,  false, '../images/cards_small/card_#.png', 54);
 		self.constant = " rotateX( -45deg ) translateZ( -" + (2*radius) + "px ) translateY( " + (2*radius) + "px )";
