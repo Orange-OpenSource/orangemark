@@ -159,32 +159,35 @@ document.addEventListener('DOMContentLoaded',
                             var main = document.createElement('div');
                             main.id = 'main';
 							
-                            self.container = document.createElement('div');
-                            self.container.id = 'container';
-                            self.container.style['width'] = self.contWidth + 'px';
-                            self.container.style['height'] = self.contHeight + 'px';
-                            self.container.style['border'] = '1px solid red';
-                            self.container.style['position'] = 'relative';
-                            self.container.style['marginLeft'] = 'auto';
-                            self.container.style['marginRight'] = 'auto';
-                            self.container.style['overflow'] = 'hidden';
-                            main.appendChild(self.container);
-							
-                            var title = document.createElement('p');
-                            title.id = 'label';
-                            main.appendChild(title);
-							
-							var results = document.createElement('div');
+                            var results = document.createElement('a');
                             results.id = 'results'
 							results.style['position'] = 'absolute';
-							results.style['top'] = '0px';
-							results.style['right'] = '0px';
+							results.style['left'] = '50%';
+							results.style['marginLeft'] = Math.round(self.contWidth/2) + 'px';
+							results.style['width'] = '80px';
+                            results.style['border'] = '5px solid #5A5C61';
                             results.style['fontSize'] = '1.5em';                            
                             results.style['fontFamily'] = 'letsgodigital, sans-serif';
                             results.style['color'] = 'orange';
                             results.style['backgroundColor'] = 'black';
                             main.appendChild(results);
-							
+                            
+                            self.container = document.createElement('div');
+                            self.container.id = 'container';
+                            self.container.style['width'] = self.contWidth + 'px';
+                            self.container.style['height'] = self.contHeight + 'px';
+                            self.container.style['backgroundColor'] = 'white';
+                            self.container.style['border'] = '5px solid #5A5C61';
+                            self.container.style['position'] = 'relative';
+                            self.container.style['marginLeft'] = 'auto';
+                            self.container.style['marginRight'] = 'auto';
+                            self.container.style['overflow'] = 'hidden';
+                            main.appendChild(self.container);
+
+                            var title = document.createElement('p');
+                            title.id = 'label';
+                            main.appendChild(title);
+                            							
                             var log = document.createElement('div');
                             log.id = 'log';
                             main.appendChild(log);    
