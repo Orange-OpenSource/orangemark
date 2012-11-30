@@ -9,27 +9,21 @@
         width: 100%;
         height: 100%;
         margin: 0px;
+        font-family: Arial, Verdana, Helvetica, sans-serif;
 	}
     #header {
-        height: 5%;
-    }
-    #Container
-    {
-        display: table;
         width: 100%;
+        height: 5%;
+        background-color: #5A5C61;
+        color: white;
+        display: table;
     }
-    div
-    {
-       display: table-cell;
-    } 
-    #left
-    {
-        float: none;
-        text-align: left;
-    } 
-    #right
-    {
-        text-align: right;
+    #header > * {
+        display: table-cell;
+    }
+    #CurrentTest {
+        width: 300px;
+        overflow: hidden;
     }
     #test {
         width: 100%;
@@ -71,6 +65,10 @@ function CheckForResult()
         }
     }
     catch(e){}
+}
+
+function updateStatus() {
+    document.getElementById('CurrentTest').innerHTML =  "Test #" + (iUrl+1) + "/" + (oTests.length-1) + " [" + oTests[iUrl] + "]";
 }
 
 function init()
@@ -117,10 +115,9 @@ function init()
 				oComment[x] = '0';
             }
 
-            //oTestFrame = window.parent.document.getElementById('test');
             oTestFrame = document.getElementById('test');
             oTestFrame.src = oTests[iUrl];
-            document.getElementById('CurrentTest').innerHTML =  "Test #" + (iUrl+1) + "/" + (oTests.length-1) + "(" + oLog[iUrl] + ") " + oTests[iUrl];
+            updateStatus();
 
             oTimer = setInterval("CheckForResult()", 5000);
             bTimerRunning = true;
@@ -160,7 +157,7 @@ function next()
     {
         iUrl++;
         oTestFrame.src = oTests[iUrl] ;
-        document.getElementById('CurrentTest').innerHTML =  "Test #" + (iUrl+1) + "/" + (oTests.length-1) + "(" + oLog[iUrl] + ") " + oTests[iUrl];
+        updateStatus();
 
         oTimer = setInterval("CheckForResult()", 5000);
         bTimerRunning = true;
@@ -168,29 +165,8 @@ function next()
     }
     else
     {
-        document.getElementById('CurrentTest').innerHTML = "Test #" + (iUrl+1) + "/" + (oTests.length-1) + "(" + oLog[iUrl] + ") " + oTests[iUrl];
+        updateStatus();
         oTestFrame.src = "./results.html";
-    }
-}
-
-function last()
-{
-    if (bTimerRunning)
-    {
-        clearInterval(oTimer);
-        bTimerRunning = false;
-        iCallbacks = 0;
-    }
-
-    if (iUrl>0)
-    {
-        iUrl--;
-        oTestFrame.src = oTests[iUrl] ;
-        document.getElementById('CurrentTest').innerHTML = "Test #" + (iUrl+1) + "/" + (oTests.length-1) + "(" + oLog[iUrl] + ") " + oTests[iUrl];
-    }
-    else
-    {
-        document.getElementById('CurrentTest').innerHTML = "Test #" + (iUrl+1) + "/" + (oTests.length-1) + "(" + oLog[iUrl] + ") " + oTests[iUrl];
     }
 }
 
@@ -207,21 +183,20 @@ function TestResults()
     </head>
     <body>
         <div id="header">
+          <h1>OrangeMark</h1>
+          <h2>Browser Graphics Performance Test Suite</h2>
           <div id="CurrentTest"></div>
-          <div id="Container">
-            <div id="left">
-                <button id="Pass" accesskey="P" onclick="log('Pass');">Pass</button>
-                <button id="Fail" accesskey="F" onclick="log('Fail');">Fail</button>
-                <button id="Not Implemented" accesskey="F" onclick="log('Not Implemented');">Not Implemented</button>
-                <button id="last" accesskey="L" onclick="last();">&lt;&lt; Last</button>			
-                <button id="Next" accesskey="N" onclick="next();">Next &gt;&gt;</button>
-            </div>
-          </div>
+          <p>Press any key to skip</p>
         </div>
         <iframe id='test' frameborder="0" scrolling="no">
         </iframe>
     </body>
     <script type='text/javascript'>
         init();
+        document.addEventListener('keypress',
+            function(evt) {
+                next();
+            },
+            false);
     </script>
 </html>
