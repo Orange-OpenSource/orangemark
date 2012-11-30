@@ -52,7 +52,6 @@ var self = window.UIPerfTest = {
         }
         // Our main test function
         var runTest = function(index) {
-            document.getElementById("results").innerHTML = "Run #" + index;
             fps = new Array();
             var averageArray = function(arr) {
                 var avg = arr[0];
