@@ -53,11 +53,18 @@
 ./3d/card-rotateXYZ.html
 # Carousel
 ./3d/frame-carousel-rotateY.html
+./3d/text-carousel-rotateY.html
 ./3d/image-carousel-rotateY.html
 # Sphere
 ./3d/frame-sphere-rotateX.html
 ./3d/frame-sphere-rotateY.html
+./3d/frame-sphere-rotateZ.html
 ./3d/frame-sphere-rotateXYZ.html
+./3d/text-sphere-rotateX.html
+./3d/text-sphere-rotateY.html
+./3d/text-sphere-rotateZ.html
+./3d/text-sphere-rotateXYZ.html
 ./3d/image-sphere-rotateX.html
 ./3d/image-sphere-rotateY.html
+./3d/image-sphere-rotateZ.html
 ./3d/image-sphere-rotateXYZ.html
