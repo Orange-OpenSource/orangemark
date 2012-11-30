@@ -166,7 +166,7 @@ function next()
     else
     {
         updateStatus();
-        oTestFrame.src = "./results.html";
+        displayResults();
     }
 }
 
@@ -179,6 +179,106 @@ function TestResults()
     }
     return results;
 }
+
+function displayResults() {
+    document.body.removeChild(document.getElementById('test'));
+    makeAverageByCapabilities = function (capabilities, results) {
+		if (capabilities.length <= 0) return 0;
+		var nb = 0;
+		var sum = 0;
+		
+		for (var j=0; j<results.length; j++) {
+			var requestedCapabilities = true;
+			for (var i=0; i<capabilities.length && requestedCapabilities==true; i++) {
+				if (results[j].test.indexOf(capabilities[i])<0) requestedCapabilities = false;
+			}
+			if (requestedCapabilities==true) {
+				var value = 0;
+				value = Math.round(parseFloat(results[j].comment));
+				sum += value;
+				nb++;
+			}
+		}
+		if 	(nb>0) {
+			return sum/nb;
+		}
+		else {
+			return -1;
+		}
+	};
+	
+    var summary = document.createElement('div');
+    var sumStr = "<ul>";
+    sumStr += "<li>User-Agent: " + window.navigator.userAgent+"</li>";
+    //sumStr += "<li>Date: " + Date(); + "</li>"
+    sumStr += "</ul>";
+    summary.innerHTML = sumStr;
+    document.body.appendChild(summary);
+
+    var results = TestResults();
+
+	var colorResult = new Array(
+			'rgb(255,0,0)',  
+			'rgb(255,102,0)',
+			'rgb(255,128,0)',
+			'rgb(255,128,0)',
+			'rgb(255,128,0)',
+			'rgb(204,153,0)',
+			'rgb(153,179,0)',
+			'rgb(102,204,0)',
+			'rgb(70,215,0)', 
+			'rgb(30,240,0)',   
+			'rgb(0,255,0)', 
+			'rgb(0,255,0)'
+		);
+    
+	
+	resStr = '<div style="float:left">';
+	for (var x=0;x<results.length;x++)
+    {
+		if (x%Math.round(1+results.length/3)==0) {
+			if (x!=0) {
+				resStr += '</table></div>';
+			}
+			resStr += '<div style="float:left;margin-right:20px;"><table>';
+		}
+
+		value = 0.0;
+		try {
+			value = Math.round(parseFloat(results[x].comment));
+		}
+		catch(e) {}
+		
+		resStr += "<tr style='background-color: "+colorResult[value]+"'>";
+		resStr += "<td>"+(x+1)+"</td><td>"+results[x].test+"</td><td>"+results[x].comment+"</td></tr>";
+		
+    }
+	resStr += "</table></div>";
+	resStr += '</div>';
+	
+	var resultByCapabilities = new Array();
+	resultByCapabilities["Frame2D"] = makeAverageByCapabilities(["2d","frame"], results);
+	resultByCapabilities["Text2D"] = makeAverageByCapabilities(["2d","text"], results);
+	resultByCapabilities["Image2D"] = makeAverageByCapabilities(["2d","image"], results);
+	resultByCapabilities["Frame3D"] = makeAverageByCapabilities(["3d","frame"], results);
+	resultByCapabilities["Text3D"] = makeAverageByCapabilities(["3d","text"], results);
+	resultByCapabilities["Image3D"] = makeAverageByCapabilities(["3d","image"], results);
+	resultByCapabilities["Rotate"] = makeAverageByCapabilities(["2d","rotate"], results);
+	resultByCapabilities["Opacity"] = makeAverageByCapabilities(["2d","opacity"], results);
+	
+	resStr += '<div style="float:left;margin-right:20px;"><table>';
+	for(var item in resultByCapabilities)
+	{
+		 resStr += '<tr><td>' + item + ' </td><td><div style="background-color:rgb(230,230,230);width:100px;">';
+		 resStr += '<div style="background-color:' + colorResult[Math.round(resultByCapabilities[item])] + ';width:' + (resultByCapabilities[item]*10) + '%">' + resultByCapabilities[item].toFixed(2) + '</div></div></td></tr>';
+	}
+	resStr += "</table></div>";
+	
+    var results = document.createElement('div');
+    results.innerHTML = resStr;
+    document.body.appendChild(results);
+}
+
 </script>
     </head>
     <body>
