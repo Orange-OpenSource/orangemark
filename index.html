@@ -4,9 +4,15 @@
 <title>Orange Test Loader </title>
 <link rel="author" title="Orange" href="http://www.orange.com/" />
 <style type="text/css">
-	body {
+	html, body {
 		background-color: lightgrey;
+        width: 100%;
+        height: 100%;
+        margin: 0px;
 	}
+    #header {
+        height: 5%;
+    }
     #Container
     {
         display: table;
@@ -24,6 +30,10 @@
     #right
     {
         text-align: right;
+    }
+    #test {
+        width: 100%;
+        height: 95%;
     }
 </style>
 <script>
@@ -107,7 +117,8 @@ function init()
 				oComment[x] = '0';
             }
 
-            oTestFrame = window.parent.document.getElementById('test');
+            //oTestFrame = window.parent.document.getElementById('test');
+            oTestFrame = document.getElementById('test');
             oTestFrame.src = oTests[iUrl];
             document.getElementById('CurrentTest').innerHTML =  "Test #" + (iUrl+1) + "/" + (oTests.length-1) + "(" + oLog[iUrl] + ") " + oTests[iUrl];
 
@@ -195,6 +206,7 @@ function TestResults()
 </script>
     </head>
     <body>
+        <div id="header">
           <div id="CurrentTest"></div>
           <div id="Container">
             <div id="left">
@@ -204,7 +216,10 @@ function TestResults()
                 <button id="last" accesskey="L" onclick="last();">&lt;&lt; Last</button>			
                 <button id="Next" accesskey="N" onclick="next();">Next &gt;&gt;</button>
             </div>
+          </div>
         </div>
+        <iframe id='test' frameborder="0" scrolling="no">
+        </iframe>
     </body>
     <script type='text/javascript'>
         init();
