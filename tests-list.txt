@@ -3,16 +3,16 @@
 ./2d/frame-color.html
 ./2d/frame-color-alpha.html
 ./2d/frame-left-top.html
-./2d/frame-left-top-width-height.html
-./2d/frame-matrix.html
-./2d/frame-left-top-matrix.html
 ./2d/frame-left-top-opacity.html
+./2d/frame-left-top-reflect.html
 ./2d/frame-left-top-rotate.html
 ./2d/frame-left-top-scale.html
 ./2d/frame-left-top-skew.html
+./2d/frame-matrix.html
 ./2d/frame-left-top-border-radius.html
+./2d/frame-left-top-width-height.html
+./2d/frame-left-top-matrix.html
 ./2d/frame-linear-gradient.html
-./2d/frame-left-top-reflect.html
 # Image
 ./2d/image-left-top.html
 ./2d/image-left-top-opacity.html
@@ -20,14 +20,14 @@
 ./2d/image-left-top-rotate.html
 ./2d/image-left-top-scale.html
 ./2d/image-left-top-skew.html
-./2d/image-left-top-border-radius.html
 ./2d/image-matrix.html
+./2d/image-left-top-border-radius.html
 # Text
 ./2d/text-left-top.html
-./2d/text-left-top-scale.html
-./2d/text-left-top-rotate.html
 ./2d/text-left-top-opacity.html
 ./2d/text-left-top-reflect.html
+./2d/text-left-top-rotate.html
+./2d/text-left-top-scale.html
 ./2d/text-left-top-skew.html
 ./2d/text-left-top-emboss.html
 # Tests 3D
@@ -53,11 +53,18 @@
 ./3d/card-rotateXYZ.html
 # Carousel
 ./3d/frame-carousel-rotateY.html
+./3d/text-carousel-rotateY.html
 ./3d/image-carousel-rotateY.html
 # Sphere
 ./3d/frame-sphere-rotateX.html
 ./3d/frame-sphere-rotateY.html
+./3d/frame-sphere-rotateZ.html
 ./3d/frame-sphere-rotateXYZ.html
+./3d/text-sphere-rotateX.html
+./3d/text-sphere-rotateY.html
+./3d/text-sphere-rotateZ.html
+./3d/text-sphere-rotateXYZ.html
 ./3d/image-sphere-rotateX.html
 ./3d/image-sphere-rotateY.html
+./3d/image-sphere-rotateZ.html
 ./3d/image-sphere-rotateXYZ.html

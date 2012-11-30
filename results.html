@@ -15,6 +15,31 @@
   <div id=results></div>
   </body>
   <script>
+	makeAverageByCapabilities = function (capabilities, results) {
+		if (capabilities.length <= 0) return 0;
+		var nb = 0;
+		var sum = 0;
+		
+		for (var j=0; j<results.length; j++) {
+			var requestedCapabilities = true;
+			for (var i=0; i<capabilities.length && requestedCapabilities==true; i++) {
+				if (results[j].test.indexOf(capabilities[i])<0) requestedCapabilities = false;
+			}
+			if (requestedCapabilities==true) {
+				var value = 0;
+				value = Math.round(parseFloat(results[j].comment));
+				sum += value;
+				nb++;
+			}
+		}
+		if 	(nb>0) {
+			return sum/nb;
+		}
+		else {
+			return -1;
+		}
+	};
+	
     var summary = document.getElementById('summary');
     var sumStr = "<ul>";
     sumStr += "<li>User-Agent: " + window.navigator.userAgent+"</li>";
@@ -62,6 +87,24 @@
     }
 	resStr += "</table></div>";
 	resStr += '</div>';
+	
+	var resultByCapabilities = new Array();
+	resultByCapabilities["Frame2D"] = makeAverageByCapabilities(["2d","frame"], results);
+	resultByCapabilities["Text2D"] = makeAverageByCapabilities(["2d","text"], results);
+	resultByCapabilities["Image2D"] = makeAverageByCapabilities(["2d","image"], results);
+	resultByCapabilities["Frame3D"] = makeAverageByCapabilities(["3d","frame"], results);
+	resultByCapabilities["Text3D"] = makeAverageByCapabilities(["3d","text"], results);
+	resultByCapabilities["Image3D"] = makeAverageByCapabilities(["3d","image"], results);
+	resultByCapabilities["Rotate"] = makeAverageByCapabilities(["2d","rotate"], results);
+	resultByCapabilities["Opacity"] = makeAverageByCapabilities(["2d","opacity"], results);
+	
+	resStr += '<div style="float:left;margin-right:20px;"><table>';
+	for(var item in resultByCapabilities)
+	{
+		 resStr += '<tr><td>' + item + ' </td><td><div style="background-color:rgb(230,230,230);width:100px;">';
+		 resStr += '<div style="background-color:' + colorResult[Math.round(resultByCapabilities[item])] + ';width:' + (resultByCapabilities[item]*10) + '%">' + resultByCapabilities[item].toFixed(2) + '</div></div></td></tr>';
+	}
+	resStr += "</table></div>";
 	
     document.getElementById('results').innerHTML = resStr;
   </script>

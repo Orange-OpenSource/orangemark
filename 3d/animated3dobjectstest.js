@@ -188,7 +188,10 @@ var self = window.Animated3dObjectsTest = {
         UIPerfTest.container.appendChild(div);
         self.objects3d.push(div);
     },
-	makeCarouselObject : function (number, div, url, urlMax) {
+	moveObject :  function (object, move) {
+		object.style[Modernizr.prefixed('transform')] = self.constant + ' ' + move;
+	},
+	makeCarouselObject : function (number, div, text, url, urlMax) {
 		var index = 0;
 		var radius = 0;
 		if (number>=4) {
@@ -203,6 +206,14 @@ var self = window.Animated3dObjectsTest = {
 				}
 				else {
 					figure.style['backgroundColor']= "rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
+					if (text==true) {
+						figure.style['lineHeight']= self.frameHeight + "px";
+						figure.style['verticalAlign']= "middle";
+						figure.style['fontSize']= "64px";
+						figure.style['fontWeight']= "bolder";
+						figure.style['height']= self.frameHeight + "px";
+						figure.innerHTML = ++index;
+					}
 				}
 				figure.style['width']= self.frameWidth + "px";
 				figure.style['height']= self.frameHeight + "px";
@@ -211,12 +222,13 @@ var self = window.Animated3dObjectsTest = {
 				figure.style[Modernizr.prefixed('transform')]= "translateX( -" + (self.frameWidth/2) + "px ) rotateY(   "+ Math.round((360/number)*i) +"deg ) translateZ( "+ radius +"px )";
 				div.appendChild(figure);
 			}
-			self.makeCarouselObject(Math.round(number/2), div, url, urlMax);			
+			self.makeCarouselObject(Math.round(number/2), div, text, url, urlMax);			
 		}
 		return radius;
 	},
-	addColoredCarouselObject : function (number) {
+	addColoredCarouselObject : function (number, text) {
 		number = number ? number : 9;
+		text = text ? text : false;
 		self.frameWidth = 300;
 		self.frameHeight = 300;
         var div= document.createElement("div");
@@ -225,7 +237,7 @@ var self = window.Animated3dObjectsTest = {
         var transformStyleProperty = window.Modernizr ? Modernizr.prefixed('transformStyle') : 'webkitTransformStyle';
         div.style[transformStyleProperty] = 'preserve-3d';
         div.style['position'] = 'absolute';
-		var radius = self.makeCarouselObject(number, div);
+		var radius = self.makeCarouselObject(number, div, text);
 		self.constant = " rotateX( -25deg ) translateZ( -" + radius + "px )";
 		div.style[Modernizr.prefixed('transform')]= self.constant;
 		div.style['top']= Math.round(UIPerfTest.contHeight/2 - self.frameHeight/2) + "px";
@@ -233,9 +245,6 @@ var self = window.Animated3dObjectsTest = {
         UIPerfTest.container.appendChild(div);
         self.objects3d.push(div);
     },
-	moveObject :  function (object, move) {
-		object.style[Modernizr.prefixed('transform')] = self.constant + ' ' + move;
-	},
 	addCImageCarouselObject : function (number) {
 		number = number ? number : 9;
 		self.frameWidth = 194;
@@ -246,7 +255,7 @@ var self = window.Animated3dObjectsTest = {
         var transformStyleProperty = window.Modernizr ? Modernizr.prefixed('transformStyle') : 'webkitTransformStyle';
         div.style[transformStyleProperty] = 'preserve-3d';
         div.style['position'] = 'absolute';
-		var radius = self.makeCarouselObject(number, div, '../images/cards_small/card_#.png', 54);
+		var radius = self.makeCarouselObject(number, div, false, '../images/cards_small/card_#.png', 54);
 		self.constant = " rotateX( -25deg ) translateZ( -" + radius + "px )";
 		div.style[Modernizr.prefixed('transform')] = self.constant;
 		div.style['top']= Math.round(UIPerfTest.contHeight/2 - self.frameHeight/2) + "px";
@@ -254,8 +263,9 @@ var self = window.Animated3dObjectsTest = {
         UIPerfTest.container.appendChild(div);
         self.objects3d.push(div);
     },
-	makeSphereObject : function (number, div, square, url, urlMax) {
+	makeSphereObject : function (number, div, square, text, url, urlMax) {
 		square = square ? square : false;
+		text = text ? text : false;
 		var index = 0;
 		var radius = 0;
 		if (number>=4) {
@@ -268,9 +278,12 @@ var self = window.Animated3dObjectsTest = {
 				var color = "";
 				for (var rx=0;rx<=maxRotateX;rx++) {
 					color = "rgb(" + Math.abs(Math.round(128-128*Math.sin(Math.PI*rx*2/number + Math.PI/2))) + "," + Math.abs(Math.round(128-128*Math.cos(Math.PI*rx*2/number - Math.PI))) + "," + Math.abs(Math.round(128-128*Math.sin(Math.PI*rx*2/number))) + ")";
-					if (ry!=rx && rx==interTop) continue;
-					if (ry!=0 && rx==interBottom) continue;
+					if ((ry!=rx && rx==interTop) || (ry!=0 && rx==interBottom)) {
+						continue;
+					}
+					
 					var figure= document.createElement("div");
+					
 					if (url) {
 						var urlTmp = url.replace(/#/g,((index++)%urlMax)+1);
 						figure.style['backgroundImage']= "url("+urlTmp+")";
@@ -281,11 +294,16 @@ var self = window.Animated3dObjectsTest = {
 					}
 					else {
 						figure.style['backgroundColor']= color;
+						figure.style['height']= self.frameHeight + "px";
 						figure.style['opacity']= "0.9";
-						figure.style['padding']= "5px";
-						figure.style['fontSize']= "40px";
-						figure.style['fontWeight']= "bolder";
-					    figure.style['height']= self.frameHeight + "px";
+						if (text==true) {
+							figure.style['lineHeight']= self.frameHeight + "px";
+							figure.style['verticalAlign']= "middle";
+							figure.style['fontSize']= "64px";
+							figure.style['fontWeight']= "bolder";
+							figure.innerHTML = ++index;
+							//document.getElementById('container').innerHTML += "index=" + index + "<br/>";
+						}
 						if (square) {
 							figure.style['width']= self.frameWidth + "px";
 						}
@@ -310,8 +328,9 @@ var self = window.Animated3dObjectsTest = {
 		}
 		return radius;
 	},
-	addColoredSphereObject : function (number) {
+	addColoredSphereObject : function (number, text) {
 		number = number ? number : 9;
+		text = text ? text : false;
 		self.frameWidth = 300;
 		self.frameHeight = 300;
         var div= document.createElement("div");
@@ -320,7 +339,7 @@ var self = window.Animated3dObjectsTest = {
         var transformStyleProperty = window.Modernizr ? Modernizr.prefixed('transformStyle') : 'webkitTransformStyle';
         div.style[transformStyleProperty] = 'preserve-3d';
         div.style['position'] = 'absolute';
-		var radius = self.makeSphereObject(number, div);
+		var radius = self.makeSphereObject(number, div, false, text);
 		self.constant = " rotateX( -45deg ) translateZ( -" + (2*radius) + "px ) translateY( " + (2*radius) + "px )";
 		div.style[Modernizr.prefixed('transform')]= self.constant;
 		div.style['top']= Math.round(UIPerfTest.contHeight/2 - self.frameHeight/2) + "px";
@@ -338,7 +357,7 @@ var self = window.Animated3dObjectsTest = {
         var transformStyleProperty = window.Modernizr ? Modernizr.prefixed('transformStyle') : 'webkitTransformStyle';
         div.style[transformStyleProperty] = 'preserve-3d';
         div.style['position'] = 'absolute';
-		var radius = self.makeSphereObject(number, div, true,  '../images/cards_small/card_#.png', 54);
+		var radius = self.makeSphereObject(number, div, true,  false, '../images/cards_small/card_#.png', 54);
 		self.constant = " rotateX( -45deg ) translateZ( -" + (2*radius) + "px ) translateY( " + (2*radius) + "px )";
 		div.style[Modernizr.prefixed('transform')]= self.constant;
 		div.style['top']= Math.round(UIPerfTest.contHeight/2 - self.frameHeight/2) + "px";
