@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TextSphere [rotateY]</title>
+    <title>Image [left,top,reflect]</title>
     <link rel="stylesheet" type="text/css" href="../uiperftest.css">
     <link rel="stylesheet" type="text/css" href="../resources/testharness.css">
     <script type="text/javascript" src="../resources/fpsmeter.js"></script>
@@ -9,26 +9,28 @@
     <script type="text/javascript" src="../resources/testharnessreport.js"></script>
     <script type="text/javascript" src="../resources/modernizr.js"></script>
     <script type="text/javascript" src="../uiperftest.js"></script>
-    <script type="text/javascript" src="./animated3dobjectstest.js"></script>
+    <script type="text/javascript" src="./animatedframestest.js"></script>
 
     <script type="text/javascript">
       
       var timer;
       
       function startAnimation(index){
-		Animated3dObjectsTest.addColoredSphereObject(Math.pow(2, index+1), true);
-		
+        for(var i=0; i<(Math.pow(2, index-1)); i++) {
+			AnimatedFramesTest.addCarteFrame();
+			AnimatedFramesTest.frames[i].style['webkitBoxReflect'] = 'below 0 -webkit-gradient(linear,0 0,0 100%,from(transparent),color-stop(.6,transparent),to(rgba(255, 255, 255, 0.3)))';
+		}
         setTimeout(function() {
-                updateObjects();
-                timer = setInterval(updateObjects,1000);
+                updateFrames();
+                timer = setInterval(updateFrames,1000);
             },
             10);
       }
       
-      function updateObjects () {
-        var objects3d= Animated3dObjectsTest.objects3d;
-        for (var i=0, l= objects3d.length; i< l; i++){
-		  Animated3dObjectsTest.moveObject(objects3d[i], 'rotateY( ' + Math.round(Math.random()*360 - 180)*3 + 'deg )');
+      function updateFrames () {
+        var frames= AnimatedFramesTest.frames;
+        for (var i=0, l= frames.length; i< l; i++){
+			AnimatedFramesTest.frames[i].style['webkitBoxReflect'] = 'below 0 -webkit-gradient(linear,0 0,0 100%,from(transparent),color-stop(.6,transparent),to(rgba(255, 255, 255, 0.3)))';
         }
       }
       
@@ -40,8 +42,8 @@
   </head>
   <body>
     <script>
-      Animated3dObjectsTest.run("TextSphere [rotateY]",
-                             ['csstransitions','csstransforms','csstransforms3d'],
+      AnimatedFramesTest.run("Image [left,top,reflect]",
+                             ['csstransitions','cssreflections'],
                              startAnimation,
                              stopAnimation);
     </script>
