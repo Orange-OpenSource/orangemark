@@ -257,14 +257,8 @@ function displayResults() {
 	resStr += '</div>';
 	
 	var resultByCapabilities = new Array();
-	resultByCapabilities["Frame2D"] = makeAverageByCapabilities(["2d","frame"], results);
-	resultByCapabilities["Text2D"] = makeAverageByCapabilities(["2d","text"], results);
-	resultByCapabilities["Image2D"] = makeAverageByCapabilities(["2d","image"], results);
-	resultByCapabilities["Frame3D"] = makeAverageByCapabilities(["3d","frame"], results);
-	resultByCapabilities["Text3D"] = makeAverageByCapabilities(["3d","text"], results);
-	resultByCapabilities["Image3D"] = makeAverageByCapabilities(["3d","image"], results);
-	resultByCapabilities["Rotate"] = makeAverageByCapabilities(["2d","rotate"], results);
-	resultByCapabilities["Opacity"] = makeAverageByCapabilities(["2d","opacity"], results);
+	resultByCapabilities["2D"] = makeAverageByCapabilities(["/2d/"], results);
+	resultByCapabilities["3D"] = makeAverageByCapabilities(["/3d/"], results);
 	
 	resStr += '<div style="float:left;margin-right:20px;"><table>';
 	for(var item in resultByCapabilities)
