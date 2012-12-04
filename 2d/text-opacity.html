@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Text [left,top,reflect]</title>
+    <title>Text [left,top,opacity]</title>
     <link rel="stylesheet" type="text/css" href="../uiperftest.css">
     <link rel="stylesheet" type="text/css" href="../resources/testharness.css">
     <script type="text/javascript" src="../resources/fpsmeter.js"></script>
@@ -18,7 +18,6 @@
       function startAnimation(index){
         for(var i=0; i<(Math.pow(2, index-1)); i++) {
 			AnimatedFramesTest.addTextFrame('Text ' + (i+1) + ' in CSS3');
-			AnimatedFramesTest.frames[i].style['webkitBoxReflect'] = 'below 0 -webkit-gradient(linear,0 0,0 100%,from(transparent),color-stop(.6,transparent),to(rgba(255, 255, 255, 0.3)))';
 		}
         setTimeout(function() {
                 updateFrames();
@@ -30,9 +29,7 @@
       function updateFrames () {
         var frames= AnimatedFramesTest.frames;
         for (var i=0, l= frames.length; i< l; i++){
-          AnimatedFramesTest.randomPositionFrame(frames[i]);
-            //frames[i].style[Modernizr.prefixed('transform')] = 'skew(' + Math.round(Math.random() * 90 - 45 ) + 'deg, ' + Math.round(Math.random() * 90 - 45 ) + 'deg)';
-			AnimatedFramesTest.frames[i].style['webkitBoxReflect'] = 'below 0 -webkit-gradient(linear,0 0,0 100%,from(transparent),color-stop(.6,transparent),to(rgba(255, 255, 255, 0.3)))';
+          frames[i].style['opacity'] = Math.round(Math.random() * 100) / 100;
         }
       }
       
@@ -44,8 +41,8 @@
   </head>
   <body>
     <script>
-      AnimatedFramesTest.run("Text [left,top,reflect]",
-                             ['csstransitions','cssreflections'],
+      AnimatedFramesTest.run("Text [left,top,opacity]",
+                             ['csstransitions','opacity'],
                              startAnimation,
                              stopAnimation);
     </script>

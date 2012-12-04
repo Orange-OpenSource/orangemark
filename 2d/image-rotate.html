@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Card [rotateY]</title>
+    <title>Images [left,top,rotate]</title>
     <link rel="stylesheet" type="text/css" href="../uiperftest.css">
     <link rel="stylesheet" type="text/css" href="../resources/testharness.css">
     <script type="text/javascript" src="../resources/fpsmeter.js"></script>
@@ -9,7 +9,7 @@
     <script type="text/javascript" src="../resources/testharnessreport.js"></script>
     <script type="text/javascript" src="../resources/modernizr.js"></script>
     <script type="text/javascript" src="../uiperftest.js"></script>
-    <script type="text/javascript" src="./animated3dobjectstest.js"></script>
+    <script type="text/javascript" src="./animatedframestest.js"></script>
 
     <script type="text/javascript">
       
@@ -17,20 +17,19 @@
       
       function startAnimation(index){
         for(var i=0; i<(Math.pow(2, index-1)); i++) {
-			Animated3dObjectsTest.addCardObject();
+			AnimatedFramesTest.addCarteFrame();
 		}
         setTimeout(function() {
-                updateObjects();
-                timer = setInterval(updateObjects,1000);
+                updateFrames();
+                timer = setInterval(updateFrames,1000);
             },
             10);
       }
       
-      function updateObjects () {
-        var objects3d= Animated3dObjectsTest.objects3d;
-        for (var i=0, l= objects3d.length; i< l; i++){
-		  //Animated3dObjectsTest.randomPositionObject(objects3d[i]);
-          objects3d[i].style[Modernizr.prefixed('transform')] = 'rotateY( ' + Math.round(Math.random()*360 - 180) + 'deg )';
+      function updateFrames () {
+        var frames= AnimatedFramesTest.frames;
+        for (var i=0, l= frames.length; i< l; i++){
+          frames[i].style[Modernizr.prefixed('transform')] = 'rotate(' + Math.round(Math.random() * 180 - 360 ) + 'deg)';
         }
       }
       
@@ -42,8 +41,8 @@
   </head>
   <body>
     <script>
-      Animated3dObjectsTest.run("Card [rotateY]",
-                             ['csstransitions','csstransforms','csstransforms3d'],
+      AnimatedFramesTest.run("Images [left,top,rotate]",
+                             ['csstransitions','csstransforms'],
                              startAnimation,
                              stopAnimation);
     </script>

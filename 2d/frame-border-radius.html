@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Text [left,top,scale]</title>
+    <title>Frame [left,top,border-radius]</title>
     <link rel="stylesheet" type="text/css" href="../uiperftest.css">
     <link rel="stylesheet" type="text/css" href="../resources/testharness.css">
     <script type="text/javascript" src="../resources/fpsmeter.js"></script>
@@ -16,9 +16,7 @@
       var timer;
       
       function startAnimation(index){
-        for(var i=0; i<(Math.pow(2, index-1)); i++) {
-			AnimatedFramesTest.addTextFrame('Text ' + (i+1) + ' in CSS3');
-		}
+        for(var i=0; i<(Math.pow(2, index-1)); i++) AnimatedFramesTest.addColoredFrame();
         setTimeout(function() {
                 updateFrames();
                 timer = setInterval(updateFrames,1000);
@@ -29,8 +27,7 @@
       function updateFrames () {
         var frames= AnimatedFramesTest.frames;
         for (var i=0, l= frames.length; i< l; i++){
-          AnimatedFramesTest.randomPositionFrame(frames[i]);
-          frames[i].style[Modernizr.prefixed('transform')] = 'scale(' + Math.random() + ')';
+          frames[i].style['borderRadius'] = Math.round(Math.random() * 50) + '%';
         }
       }
       
@@ -42,10 +39,10 @@
   </head>
   <body>
     <script>
-      AnimatedFramesTest.run("Text [left,top,scale]",
-                             ['csstransitions','csstransforms'],
-                             startAnimation,
-                             stopAnimation);
+      AnimatedFramesTest.run("Frame [left,top,border-radius]",
+                            ['csstransitions','borderradius'],
+                            startAnimation,
+                            stopAnimation);
     </script>
   </body>
 </html>

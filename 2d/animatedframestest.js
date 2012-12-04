@@ -1,3 +1,5 @@
+// Copyright (C) 2012 Orange
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -46,15 +48,12 @@ var self = window.AnimatedFramesTest = {
         frame.style['top']= Math.round((Math.random()*(UIPerfTest.contHeight-self.frameHeight)*0.9) + ((UIPerfTest.contHeight-self.frameHeight)*0.05) )+"px";
     },
     addColoredFrame : function () {
-		//self.frameWidth = Math.round((UIPerfTest.contWidth)/5);
-		//self.frameHeight = Math.round((UIPerfTest.contWidth)/5);
         var div= document.createElement("div");
         div.style['position'] = 'absolute';
         div.style['backgroundColor']= "rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
         div.style['width']= self.frameWidth + "px";
         div.style['height']= self.frameHeight + "px";
-        var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
-        div.style[transitionProperty] = 'all 1s ease-in-out';
+        div.style[Modernizr.prefixed('transition')] = 'all 1s ease-in-out';
         self.randomPositionFrame(div);
         UIPerfTest.container.appendChild(div);
         self.frames.push(div);
@@ -69,8 +68,7 @@ var self = window.AnimatedFramesTest = {
 		div.style['backgroundRepeat']= "no-repeat";
         div.style['width']= self.frameWidth + "px";
         div.style['height']= self.frameHeight + "px";
-        var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
-        div.style[transitionProperty] = 'all 1s ease-in-out';
+        div.style[Modernizr.prefixed('transition')] = 'all 1s ease-in-out';
         self.randomPositionFrame(div);
         UIPerfTest.container.appendChild(div);
         self.frames.push(div);
@@ -78,22 +76,18 @@ var self = window.AnimatedFramesTest = {
 	addTextFrame : function (text) {
 		self.frameNumber++;
 		text= text ? text : "Text " + self.frameNumber + " in CSS3";
-		self.frameWidth = Math.round((UIPerfTest.contWidth)/5);
-		self.frameHeight = Math.round((UIPerfTest.contWidth)/5);
         var div= document.createElement("div");
         div.style['position'] = 'absolute';
         div.style['backgroundColor']= "rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
         div.style['color']= "rgb("+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+","+Math.round(Math.random()*255)+")";
-		div.style['backgroundSize']= self.frameWidth + "px " + self.frameHeight + "px";
-		div.style['backgroundRepeat']= "no-repeat";
         div.style['padding']= "5px";
-        div.style['fontSize']= "40px";
+        div.style['fontSize']= "80px";
         div.style['fontWeight']= "bolder";
+		div.style['verticalAlign']= "middle";
         div.style['width']= self.frameWidth + "px";
-        //div.style['height']= self.frameHeight + "px";
+        div.style['height']= self.frameHeight + "px";
 		div.innerHTML= text; 
-        var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
-        div.style[transitionProperty] = 'all 1s ease-in-out';
+        div.style[Modernizr.prefixed('transition')] = 'all 1s ease-in-out';
         self.randomPositionFrame(div);
         UIPerfTest.container.appendChild(div);
         self.frames.push(div);
@@ -114,12 +108,10 @@ var self = window.AnimatedFramesTest = {
         var div= document.createElement("div");
         div.style['position'] = 'absolute';
 		div.style['backgroundImage']= "url("+url+")";
-		//div.style['backgroundSize']= self.frameWidth + "px " + self.frameHeight + "px";
 		div.style['backgroundRepeat']= "no-repeat";
         div.style['width']= self.frameWidth + "px";
         div.style['height']= self.frameHeight + "px";
-        var transitionProperty = window.Modernizr ? Modernizr.prefixed('transition') : 'webkitTransition';
-        div.style[transitionProperty] = 'all 1s ease-in-out';
+        div.style[Modernizr.prefixed('transition')] = 'all 1s ease-in-out';
         self.randomPositionFrame(div);
         UIPerfTest.container.appendChild(div);
         self.frames.push(div);

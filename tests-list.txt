@@ -3,68 +3,45 @@
 ./2d/frame-color.html
 ./2d/frame-color-alpha.html
 ./2d/frame-left-top.html
-./2d/frame-left-top-opacity.html
-./2d/frame-left-top-reflect.html
-./2d/frame-left-top-rotate.html
-./2d/frame-left-top-scale.html
-./2d/frame-left-top-skew.html
+./2d/frame-opacity.html
+./2d/frame-reflect.html
+./2d/frame-rotate.html
+./2d/frame-scale.html
+./2d/frame-skew.html
 ./2d/frame-matrix.html
-./2d/frame-left-top-border-radius.html
-./2d/frame-left-top-width-height.html
-./2d/frame-left-top-matrix.html
+./2d/frame-border-radius.html
+./2d/frame-width-height.html
 ./2d/frame-linear-gradient.html
 # Image
 ./2d/image-left-top.html
-./2d/image-left-top-opacity.html
-./2d/image-left-top-reflect.html
-./2d/image-left-top-rotate.html
-./2d/image-left-top-scale.html
-./2d/image-left-top-skew.html
+./2d/image-opacity.html
+./2d/image-reflect.html
+./2d/image-rotate.html
+./2d/image-scale.html
+./2d/image-skew.html
 ./2d/image-matrix.html
-./2d/image-left-top-border-radius.html
 # Text
 ./2d/text-left-top.html
-./2d/text-left-top-opacity.html
-./2d/text-left-top-reflect.html
-./2d/text-left-top-rotate.html
-./2d/text-left-top-scale.html
-./2d/text-left-top-skew.html
-./2d/text-left-top-emboss.html
+./2d/text-opacity.html
+./2d/text-reflect.html
+./2d/text-rotate.html
+./2d/text-scale.html
+./2d/text-skew.html
+./2d/text-emboss.html
 # Tests 3D
 # Frame
-./3d/frame-rotateX.html
-./3d/frame-rotateY.html
-./3d/frame-rotateZ.html
 ./3d/frame-rotateXYZ.html
 # Image
-./3d/image-rotateX.html
-./3d/image-rotateY.html
-./3d/image-rotateZ.html
 ./3d/image-rotateXYZ.html
 # Text
-./3d/text-rotateX.html
-./3d/text-rotateY.html
-./3d/text-rotateZ.html
 ./3d/text-rotateXYZ.html
 # Card
-./3d/card-rotateX.html
-./3d/card-rotateY.html
-./3d/card-rotateZ.html
 ./3d/card-rotateXYZ.html
 # Carousel
 ./3d/frame-carousel-rotateY.html
 ./3d/text-carousel-rotateY.html
 ./3d/image-carousel-rotateY.html
 # Sphere
-./3d/frame-sphere-rotateX.html
-./3d/frame-sphere-rotateY.html
-./3d/frame-sphere-rotateZ.html
 ./3d/frame-sphere-rotateXYZ.html
-./3d/text-sphere-rotateX.html
-./3d/text-sphere-rotateY.html
-./3d/text-sphere-rotateZ.html
 ./3d/text-sphere-rotateXYZ.html
-./3d/image-sphere-rotateX.html
-./3d/image-sphere-rotateY.html
-./3d/image-sphere-rotateZ.html
 ./3d/image-sphere-rotateXYZ.html

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Text [left,top,rotate]</title>
+    <title>Images PNG [left,top,rotate]</title>
     <link rel="stylesheet" type="text/css" href="../uiperftest.css">
     <link rel="stylesheet" type="text/css" href="../resources/testharness.css">
     <script type="text/javascript" src="../resources/fpsmeter.js"></script>
@@ -16,9 +16,10 @@
       var timer;
       
       function startAnimation(index){
-        //for(var i=0; i<(5*index); i++) AnimatedFramesTest.addColoredFrame();
-        for(var i=0; i<Math.pow(2, index-1); i++) AnimatedFramesTest.addTextFrame('Text ' + (i+1) + ' in CSS3');
-		setTimeout(function() {
+        for(var i=0; i<(Math.pow(2, index-1)); i++) {
+			AnimatedFramesTest.addCarteFrame(false);
+		}
+        setTimeout(function() {
                 updateFrames();
                 timer = setInterval(updateFrames,1000);
             },
@@ -28,24 +29,22 @@
       function updateFrames () {
         var frames= AnimatedFramesTest.frames;
         for (var i=0, l= frames.length; i< l; i++){
-          AnimatedFramesTest.randomPositionFrame(frames[i]);
-          frames[i].style[Modernizr.prefixed('transform')] = 'rotate(' + Math.round((Math.random() * 180 - 360)*2 ) + 'deg)';
+          frames[i].style[Modernizr.prefixed('transform')] = 'rotate(' + Math.round(Math.random() * 180 - 360 ) + 'deg)';
         }
       }
       
       function stopAnimation(){
         clearInterval(timer);
-		
       }
       
     </script>
   </head>
   <body>
     <script>
-      AnimatedFramesTest.run("Text [left,top,rotate]",
+      AnimatedFramesTest.run("Images PNG [left,top,rotate]",
                              ['csstransitions','csstransforms'],
                              startAnimation,
-                             stopAnimation, 5, 20);
+                             stopAnimation);
     </script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Frame [left,top,reflect]</title>
+    <title>Image [left,top,skew]</title>
     <link rel="stylesheet" type="text/css" href="../uiperftest.css">
     <link rel="stylesheet" type="text/css" href="../resources/testharness.css">
     <script type="text/javascript" src="../resources/fpsmeter.js"></script>
@@ -17,8 +17,7 @@
       
       function startAnimation(index){
         for(var i=0; i<(Math.pow(2, index-1)); i++) {
-			AnimatedFramesTest.addColoredFrame();
-			AnimatedFramesTest.frames[i].style['webkitBoxReflect'] = 'below 0 -webkit-gradient(linear,0 0,0 100%,from(transparent),color-stop(.6,transparent),to(rgba(255, 255, 255, 0.3)))';
+			AnimatedFramesTest.addCarteFrame();
 		}
         setTimeout(function() {
                 updateFrames();
@@ -30,8 +29,7 @@
       function updateFrames () {
         var frames= AnimatedFramesTest.frames;
         for (var i=0, l= frames.length; i< l; i++){
-          AnimatedFramesTest.randomPositionFrame(frames[i]);
-		  AnimatedFramesTest.frames[i].style['webkitBoxReflect'] = 'below 0 -webkit-gradient(linear,0 0,0 100%,from(transparent),color-stop(.6,transparent),to(rgba(255, 255, 255, 0.3)))';
+            frames[i].style[Modernizr.prefixed('transform')] = 'skew(' + Math.round(Math.random() * 90 - 45 ) + 'deg, ' + Math.round(Math.random() * 90 - 45 ) + 'deg)';
         }
       }
       
@@ -43,8 +41,8 @@
   </head>
   <body>
     <script>
-      AnimatedFramesTest.run("Frame [left,top,reflect]",
-                             ['csstransitions','cssreflections'],
+      AnimatedFramesTest.run("Image [left,top,skew]",
+                             ['csstransitions','csstransforms'],
                              startAnimation,
                              stopAnimation);
     </script>

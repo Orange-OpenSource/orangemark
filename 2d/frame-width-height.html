@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Frame [left,top,skew]</title>
+    <title>Frame [left,top,width,height]</title>
     <link rel="stylesheet" type="text/css" href="../uiperftest.css">
     <link rel="stylesheet" type="text/css" href="../resources/testharness.css">
     <script type="text/javascript" src="../resources/fpsmeter.js"></script>
@@ -27,8 +27,8 @@
       function updateFrames () {
         var frames= AnimatedFramesTest.frames;
         for (var i=0, l= frames.length; i< l; i++){
-          AnimatedFramesTest.randomPositionFrame(frames[i]);
-          frames[i].style[Modernizr.prefixed('transform')] = 'skew(' + Math.round(Math.random() * 90 - 45 ) + 'deg, ' + Math.round(Math.random() * 90 - 45 ) + 'deg)';
+          frames[i].style['width'] = Math.round(Math.random() * AnimatedFramesTest.frameWidth) + 'px';
+          frames[i].style['height'] = Math.round(Math.random() * AnimatedFramesTest.frameHeight) + 'px';
         }
       }
       
@@ -40,10 +40,10 @@
   </head>
   <body>
     <script>
-      AnimatedFramesTest.run("Frame [left,top,skew]",
-                             ['csstransitions','csstransforms'],
-                             startAnimation,
-                             stopAnimation);
+      AnimatedFramesTest.run("Frame [left,top,width,height]",
+                            ['csstransitions'],
+                            startAnimation,
+                            stopAnimation);
     </script>
   </body>
 </html>

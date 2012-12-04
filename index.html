@@ -142,8 +142,12 @@ function log(result)
     nbFail = oTestWindow.document.getElementsByClassName("fail").length;
 	nbPass = (nbPass==0) ? 0 : nbPass - 1;
 	nbFail = (nbFail==0) ? 0 : nbFail - 1;
-	//oComment[iUrl] = nbPass + "/" + (nbPass+nbFail) + " succeed (" + nbPass + " " + nbFail + ")";
-	oComment[iUrl] = nbPass + "/" + (nbPass+nbFail);
+	if (nbPass+nbFail == 1) {
+		oComment[iUrl] = "unsupported";
+	}
+	else {
+		oComment[iUrl] = nbPass + "/" + (nbPass+nbFail);
+	}
 	
     next();
 }
@@ -199,8 +203,10 @@ function displayResults() {
 			if (requestedCapabilities==true) {
 				var value = 0;
 				value = Math.round(parseFloat(results[j].comment));
-				sum += value;
-				nb++;
+				if (value >= 0) {
+					sum += value;
+					nb++;
+				}
 			}
 		}
 		if 	(nb>0) {
@@ -240,20 +246,23 @@ function displayResults() {
 	resStr = '<div style="float:left">';
 	for (var x=0;x<results.length;x++)
     {
-		if (x%Math.round(1+results.length/3)==0) {
+		if (x%Math.round(1+results.length/2)==0) {
 			if (x!=0) {
 				resStr += '</table></div>';
 			}
 			resStr += '<div style="float:left;margin-right:20px;"><table>';
 		}
 
-		value = 0.0;
-		try {
-			value = Math.round(parseFloat(results[x].comment));
+		var color = "rgb(230,230,230)";
+		if (results[x].comment != "unsupported") {
+			value = 0.0;
+			try {
+				value = Math.round(parseFloat(results[x].comment));
+				color = colorResult[value];
+			}
+			catch(e) {}
 		}
-		catch(e) {}
-		
-		resStr += "<tr style='background-color: "+colorResult[value]+"'>";
+		resStr += "<tr style='background-color: "+color+"'>";
 		resStr += "<td>"+(x+1)+"</td><td>"+results[x].test+"</td><td>"+results[x].comment+"</td></tr>";
 		
     }
@@ -261,20 +270,19 @@ function displayResults() {
 	resStr += '</div>';
 	
 	var resultByCapabilities = new Array();
-	resultByCapabilities["Frame2D"] = makeAverageByCapabilities(["2d","frame"], results);
-	resultByCapabilities["Text2D"] = makeAverageByCapabilities(["2d","text"], results);
-	resultByCapabilities["Image2D"] = makeAverageByCapabilities(["2d","image"], results);
-	resultByCapabilities["Frame3D"] = makeAverageByCapabilities(["3d","frame"], results);
-	resultByCapabilities["Text3D"] = makeAverageByCapabilities(["3d","text"], results);
-	resultByCapabilities["Image3D"] = makeAverageByCapabilities(["3d","image"], results);
-	resultByCapabilities["Rotate"] = makeAverageByCapabilities(["2d","rotate"], results);
-	resultByCapabilities["Opacity"] = makeAverageByCapabilities(["2d","opacity"], results);
+	resultByCapabilities["2D"] = makeAverageByCapabilities(["/2d/"], results);
+	resultByCapabilities["3D"] = makeAverageByCapabilities(["/3d/"], results);
 	
 	resStr += '<div style="float:left;margin-right:20px;"><table>';
 	for(var item in resultByCapabilities)
 	{
 		 resStr += '<tr><td>' + item + ' </td><td><div style="background-color:rgb(230,230,230);width:100px;">';
-		 resStr += '<div style="background-color:' + colorResult[Math.round(resultByCapabilities[item])] + ';width:' + (resultByCapabilities[item]*10) + '%">' + resultByCapabilities[item].toFixed(2) + '</div></div></td></tr>';
+		 if (resultByCapabilities[item] >= 0 ) {
+			resStr += '<div style="background-color:' + colorResult[Math.round(resultByCapabilities[item])] + ';width:' + (resultByCapabilities[item]*10) + '%">' + resultByCapabilities[item].toFixed(2) + '</div></div></td></tr>';
+		 }
+		 else {
+			resStr += 'unsupported</div></td></tr>';
+		 }
 	}
 	resStr += "</table></div>";
 	
