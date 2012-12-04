@@ -31,6 +31,7 @@
         var frames= AnimatedFramesTest.frames;
         for (var i=0, l= frames.length; i< l; i++){
 		  AnimatedFramesTest.frames[i].style['webkitBoxReflect'] = 'below 0 -webkit-gradient(linear,0 0,0 100%,from(transparent),color-stop(.6,transparent),to(rgba(255, 255, 255, 0.3)))';
+          AnimatedFramesTest.randomPositionFrame(frames[i]);
         }
       }
       
