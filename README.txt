@@ -31,3 +31,5 @@ The test suite uses the following copyrighted resources:
 - 'Let's Go Digital' Font by Wolf Lambert
     http://www.fontspace.com/wlm-fonts)
     Creative Commons (by-sa) Attribution Share Alike
+- 'Gallaudet Regular' Font by David Rakowski
+    http://www.fontspace.com/category/ASL
