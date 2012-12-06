@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Canvas [line]</title>
+    <link rel="stylesheet" type="text/css" href="../uiperftest.css">
+    <link rel="stylesheet" type="text/css" href="../resources/testharness.css">
+    <script type="text/javascript" src="../resources/fpsmeter.js"></script>
+    <script type="text/javascript" src="../resources/testharness.js"></script>
+    <script type="text/javascript" src="../resources/testharnessreport.js"></script>
+    <script type="text/javascript" src="../resources/modernizr.js"></script>
+    <script type="text/javascript" src="../uiperftest.js"></script>
+    <script type="text/javascript" src="./animatedcanvastest.js"></script>
+	<script type="text/javascript" src="./canvasobject.js"></script>
+
+    <script type="text/javascript">
+      
+      var timer;
+      
+      function startAnimation(index){
+	    AnimatedCanvasTest.init();
+        for(var i=0; i<(Math.pow(2, index-1)); i++) {
+			AnimatedCanvasTest.addCanvasObject("text");
+		}
+        setTimeout(function() {
+                update();
+                timer = setInterval(update,20);
+            },
+            10);
+      }
+      
+      function update () {
+        AnimatedCanvasTest.clear();
+		var canvasObjects= AnimatedCanvasTest.canvasObjects;
+        for (var i=0, l= canvasObjects.length; i< l; i++){
+          AnimatedCanvasTest.updateCanvasObject(canvasObjects[i]);
+        }
+      }
+      
+      function stopAnimation(){
+        clearInterval(timer);
+      }
+      
+    </script>
+  </head>
+  <body>
+    <script>
+      AnimatedCanvasTest.run("Canvas [line]",
+                             ['canvas'],
+                             startAnimation,
+                             stopAnimation);
+    </script>
+  </body>
+</html>

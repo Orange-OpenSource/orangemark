@@ -45,3 +45,8 @@
 ./3d/frame-sphere-rotateXYZ.html
 ./3d/text-sphere-rotateXYZ.html
 ./3d/image-sphere-rotateXYZ.html
+# Canvas
+./canvas/canvas-line.html
+./canvas/canvas-arc.html
+./canvas/canvas-bezier.html
+./canvas/canvas-text.html

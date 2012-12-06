@@ -1,0 +1,15 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+@font-face {
+    font-family:Gallaudet;
+    src:url(GallaudetRegular.ttf) format('truetype');
+    /* Font by David Rakowski: http://www.fontspace.com/category/ASL */
+}
+
+.sign {
+    font-family:Gallaudet;
+    font-size:1.2
+}
