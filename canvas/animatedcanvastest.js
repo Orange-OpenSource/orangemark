@@ -30,8 +30,8 @@ if(!window.UIPerfTest){
 
 var self = window.AnimatedCanvasTest = {
 	ctx: null,
-	frameWidth : 300,
-    frameHeight : 300,
+	minSize : 20,
+	maxSize : 400,
 	objectNumber : 0,
     canvasObjects : new Array(),
     run : function (label,
@@ -45,8 +45,12 @@ var self = window.AnimatedCanvasTest = {
         false);
     },
 	init : function () {
-		UIPerfTest.container.innerHTML = '<canvas width="'+UIPerfTest.contWidth+'" height="'+UIPerfTest.contHeight+'">Please use a browser that supports canvas, such as <a href="http://www.opera.com/browser/">Opera for desktop</a>.</canvas>';
-		//this.canvas = document.querySelector('canvas');
+		var canv = document.createElement("canvas");
+		canv.setAttribute('width',UIPerfTest.contWidth);
+		canv.setAttribute('height',UIPerfTest.contHeight);
+		aStr = 'canvas'; 
+		canv.setAttribute('id',aStr);
+		UIPerfTest.container.appendChild(canv);
 		this.ctx = document.querySelector('canvas').getContext('2d');
 		this.canvasObjects = new Array();
 	},
@@ -54,7 +58,7 @@ var self = window.AnimatedCanvasTest = {
 		clearCanvasObjects(this.ctx, UIPerfTest.contWidth, UIPerfTest.contHeight);
 	},
     updateCanvasObject : function (canvasObject) {
-		if ((canvasObject.size<32) || (canvasObject.size>this.frameWidth)) canvasObject.deltaSize = -canvasObject.deltaSize;
+		if ((canvasObject.size<this.minSize) || (canvasObject.size>this.maxSize)) canvasObject.deltaSize = -canvasObject.deltaSize;
 		canvasObject.size += canvasObject.deltaSize;
 		
 		if (canvasObject.posx<0) canvasObject.deltax = Math.abs(canvasObject.deltax);
@@ -77,7 +81,7 @@ var self = window.AnimatedCanvasTest = {
 			posy:Math.round((Math.random()*UIPerfTest.contHeight + UIPerfTest.contHeight/2) * 0.3),
 			deltax:Math.round(Math.random()*10 - 5),
 			deltay:Math.round(Math.random()*10 - 5),
-			size:Math.round(Math.random()*(this.frameWidth-50) + 50),
+			size:Math.round(Math.random()*(this.maxSize-this.minSize) + this.minSize),
 			deltaSize:Math.round(Math.random()*4 - 2),
 		};
         self.canvasObjects.push(canvasObject);
