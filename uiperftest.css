@@ -19,7 +19,8 @@
 /* uiperftest.css */
 
 body {
-    background: #fff;
+    /*background: #fff;*/
+    background-color: transparent; 
     font-family: 'Open Sans', sans-serif;
     text-align: center;
 }
