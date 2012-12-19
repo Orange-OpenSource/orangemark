@@ -273,6 +273,7 @@ function displayResults() {
 	resultByCapabilities["2D"] = makeAverageByCapabilities(["/2d/"], results);
 	resultByCapabilities["3D"] = makeAverageByCapabilities(["/3d/"], results);
 	resultByCapabilities["Canvas"] = makeAverageByCapabilities(["/canvas/"], results);
+	resultByCapabilities["WebGL"] = makeAverageByCapabilities(["/webgl/"], results);
 	
 	resStr += '<div style="float:left;margin-right:20px;"><table>';
 	for(var item in resultByCapabilities)

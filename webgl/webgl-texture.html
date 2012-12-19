@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebGL [Texture]</title>
+    <link rel="stylesheet" type="text/css" href="../uiperftest.css">
+    <link rel="stylesheet" type="text/css" href="../resources/testharness.css">
+    <script type="text/javascript" src="../resources/fpsmeter.js"></script>
+    <script type="text/javascript" src="../resources/testharness.js"></script>
+    <script type="text/javascript" src="../resources/testharnessreport.js"></script>
+    <script type="text/javascript" src="../resources/modernizr.js"></script>
+    <script type="text/javascript" src="../uiperftest.js"></script>
+    <script type="text/javascript" src="../resources/three.min.js"></script>
+    <script type="text/javascript" src="./animatedwebglobjectstest.js"></script>
+    <script type="text/javascript">
+      
+      var timer;
+      
+      function startAnimation(index){
+	    AnimatedWebGlObjectsTest.init(AnimatedWebGlObjectsTest.RENDERER_WEBGL,false);
+		AnimatedWebGlObjectsTest.addWebGlObject(Math.pow(2, index-1), AnimatedWebGlObjectsTest.SHAPE_CUBE, AnimatedWebGlObjectsTest.EFFECT_TEXTURE);
+		AnimatedWebGlObjectsTest.update();		
+      }
+      
+      function stopAnimation(){
+		AnimatedWebGlObjectsTest.stop();
+      }
+      
+    </script>
+  </head>
+  <body>
+    <script>
+      AnimatedWebGlObjectsTest.run("WebGL [Texture]",
+                             ['webgl'],
+                             startAnimation,
+                             stopAnimation);
+    </script>
+  </body>
+</html>

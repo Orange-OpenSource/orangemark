@@ -23,6 +23,9 @@ The test suite uses the following Open Source utility libraries:
 - W3C Test harness
     http://w3c-test.org/resources/testharness.js
     Dual W3C & BSD license
+- Three.js
+    https://github.com/mrdoob/three.js/
+    Dual MIT and LGPLv3 license
 - SVG Cards
     http://svg-cards.sourceforge.net/
     LGPL2.1 license
