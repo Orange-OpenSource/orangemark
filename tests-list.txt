@@ -51,8 +51,8 @@
 ./canvas/canvas-bezier.html
 ./canvas/canvas-text.html
 # WebGL
-./webgl/webgl-flat.html
-./webgl/webgl-opacity.html
-./webgl/webgl-texture.html
-./webgl/webgl-bump.html
-./webgl/webgl-reflect.html
+#./webgl/webgl-flat.html
+#./webgl/webgl-opacity.html
+#./webgl/webgl-texture.html
+#./webgl/webgl-bump.html
+#./webgl/webgl-reflect.html
