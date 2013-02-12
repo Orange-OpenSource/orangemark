@@ -6,6 +6,9 @@
 
 Run the benckmark here: http://orange-opensource.github.com/orangemark/
 
+This video gives an overview of the expected output:
+    http://orange-opensource.github.com/orangemark/expected.ogv 
+
 Licensing
 
 Unless explicitly specified differently (see 'Credits' below), this test
