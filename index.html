@@ -200,7 +200,7 @@ function displayResults() {
 			for (var i=0; i<capabilities.length && requestedCapabilities==true; i++) {
 				if (results[j].test.indexOf(capabilities[i])<0) requestedCapabilities = false;
 			}
-			if (requestedCapabilities==true) {
+			if (requestedCapabilities==true) && (results[j].comment != 'unsupported') {
 				var value = 0;
 				value = Math.round(parseFloat(results[j].comment));
 				if (value >= 0) {
