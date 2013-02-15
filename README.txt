@@ -1,8 +1,8 @@
-**************************************************
-* Orange Browser Graphics Performance Test Suite *
-*                                                *
-* Copyright Orange 2012, All Rigths Reserved     *
-**************************************************
+***************************************************
+* Orange Browser Graphics Performance Test Suite  *
+*                                                 *
+* Copyright Orange 2012-2013, All Rigths Reserved *
+***************************************************
 
 Run the benckmark here: http://orange-opensource.github.com/orangemark/
 

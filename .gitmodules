@@ -1,0 +1,3 @@
+[submodule "resources/fpsmeter"]
+	path = resources/fpsmeter
+	url = git://github.com/kaizouman/fpsmeter.git
