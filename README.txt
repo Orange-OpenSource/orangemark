@@ -4,7 +4,24 @@
 * Copyright Orange 2012-2013, All Rigths Reserved *
 ***************************************************
 
-Run the benckmark here: http://orange-opensource.github.com/orangemark/
+A lot of browser benchmarks available on the web are focussing on 
+javascript performance only:
+- V8,
+- Sunspider,
+- Dromaeo,
+- SpeedBattle.
+
+The GUIMark 2, and to some extent the PeacKeeper benchmarks include 
+tests on graphics, but only using Canvas, and thus heavily relying on 
+Javascript. They in addition do not distinguish between individual
+features and provide an overall note.
+
+The Orange Mark Test Suite has been designed from the start to benchmark
+graphics rendering only. It tests for specific CSS3 & Canvas features
+using pages of increasing complexity to find out when the framerate drops
+under a specific target (30fps). 
+
+You can run the benckmark here: http://orange-opensource.github.com/orangemark/
 
 This video gives an overview of the expected output:
     http://orange-opensource.github.com/orangemark/expected.ogv 
