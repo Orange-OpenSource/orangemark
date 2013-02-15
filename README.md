@@ -12,8 +12,7 @@ javascript performance only:
 The [PeaceKeeper](http://peacekeeper.futuremark.com/) benchmark includes 
 tests on graphics, but mainly using Canvas and DOM manipulations, thus
 with a strong dependency on Javascript and DOM Tree.
-In addition, it does not distinguish between individual
-features and provides an overall note.
+In addition, it does not distinguish between individual features.
 
 The Orange Mark Test Suite has been designed from the start to benchmark
 graphics rendering only.
