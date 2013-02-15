@@ -4,21 +4,25 @@
 A lot of browser benchmarks available on the web are focussing on 
 javascript performance only:
 
-- V8,
-- Sunspider,
-- Dromaeo,
-- SpeedBattle.
+- [V8](http://v8.googlecode.com/svn/data/benchmarks/v7/run.html),
+- [Sunspider](http://www.webkit.org/perf/sunspider/sunspider.html),
+- [Dromaeo](http://dromaeo.com/),
+- [SpeedBattle](http://www.speed-battle.com/).
 
-The GUIMark 2, and to some extent the PeaceKeeper benchmarks include 
-tests on graphics, but only using Canvas, and thus heavily relying on 
-Javascript. They in addition do not distinguish between individual
-features and provide an overall note.
+The [PeaceKeeper](http://peacekeeper.futuremark.com/) benchmark includes 
+tests on graphics, but mainly using Canvas and DOM manipulations, thus
+with a strong dependency on Javascript and DOM Tree.
+In addition, it does not distinguish between individual
+features and provides an overall note.
 
 The Orange Mark Test Suite has been designed from the start to benchmark
-graphics rendering only. It tests for specific CSS3 & Canvas features
+graphics rendering only.
+
+The benchmark runs a set of tests for specific CSS3 & HTML5 features
 using pages of increasing complexity to find out when the framerate drops
-under a specific target (30fps). The level of complexity reached for each
-feature gives a mark from 0 to ten.
+under a specific target (30fps). 
+
+The level of complexity reached for each feature gives a mark from 0 to ten.
 
 Run the benckmark [here](http://orange-opensource.github.com/orangemark/)
 
