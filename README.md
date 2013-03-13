@@ -32,6 +32,15 @@ Unless explicitly specified differently (see [Credits](#credits)), the
 OrangeMark Test Suite is licensed under an 
 [MIT license](http://orange-opensource.github.com/orangemark/LICENSE).
 
+## Local installation
+
+You can install your own copy of the benchmark using standard git commands: 
+
+    git clone https://github.com/Orange-OpenSource/orangemark.git
+    cd orangemark
+    git submodule init
+    git submodule update
+
 ## Credits
 
 The Orange Mark test suite uses the following Open Source libraries:
