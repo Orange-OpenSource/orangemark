@@ -98,7 +98,7 @@ var self = window.UIPerfTest = {
                 
         // Assign default values if needed
         duration = duration ? duration : 5;
-        targetFPS = targetFPS ? targetFPS : 30;
+        targetFPS = targetFPS ? targetFPS : 25;
         maxIterations = maxIterations ? maxIterations : 10;
         
         document.getElementById('label').innerHTML = label;
