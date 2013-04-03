@@ -134,6 +134,8 @@ function init()
 
 }
 
+var fpsMethod = null;
+
 function log(result)
 {
     oLog[iUrl] = result;
@@ -148,6 +150,7 @@ function log(result)
 	else {
 		oComment[iUrl] = nbPass + "/" + (nbPass+nbFail);
 	}
+    fpsMethod = fpsMethod ? fpsMethod : oTestWindow.document.getElementById('method').innerHTML;
 	
     next();
 }
@@ -220,8 +223,9 @@ function displayResults() {
     var summary = document.createElement('div');
     var sumStr = "<ul>";
     sumStr += "<li>User-Agent: " + window.navigator.userAgent+"</li>";
-    //sumStr += "<li>Date: " + Date(); + "</li>"
+    if (fpsMethod) sumStr += "<li>" + fpsMethod+"</li>";
     sumStr += "</ul>";
+    sumStr +=
     summary.innerHTML = sumStr;
     document.body.appendChild(summary);
 
@@ -297,7 +301,7 @@ function displayResults() {
     </head>
     <body>
         <div id="header">
-          <h1>OrangeMark</h1>
+          <h1>OrangeMark v1.0.1</h1>
           <div id="CurrentTest"></div>
           <p>Press any key to skip</p>
         </div>

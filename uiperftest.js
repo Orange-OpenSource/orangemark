@@ -87,6 +87,15 @@ var self = window.UIPerfTest = {
                         var main = document.getElementById('main');
                         main.removeChild(document.getElementById("results"));
                         main.removeChild(self.container);
+                        var method = document.createElement('div');
+                        method.id = 'method';
+                        var methods = {
+                            'js': 'CSS transitions and setTimeout',
+                            'raf': 'CSS transitions and requestAnimationFrame',
+                            'native': 'CSS transitions and a native paint counter'
+                        };
+                        method.innerHTML = "FPS were evaluated using " + methods[self.method];
+                        main.appendChild(method);                        
                     }
                 },duration*1000);
             startCB(index);
@@ -97,7 +106,7 @@ var self = window.UIPerfTest = {
         var tests = new Array();
                 
         // Assign default values if needed
-        duration = duration ? duration : 5;
+        duration = duration ? duration : 10;
         targetFPS = targetFPS ? targetFPS : 25;
         maxIterations = maxIterations ? maxIterations : 10;
         
@@ -113,6 +122,7 @@ var self = window.UIPerfTest = {
         document.addEventListener('fps',
             function(evt) {
                 document.getElementById("results").innerHTML = evt.fps + " fps";
+                self.method = evt.method;
                 fps.push(evt.fps);
             },
             false);
