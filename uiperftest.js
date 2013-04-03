@@ -106,7 +106,7 @@ var self = window.UIPerfTest = {
         var tests = new Array();
                 
         // Assign default values if needed
-        duration = duration ? duration : 5;
+        duration = duration ? duration : 10;
         targetFPS = targetFPS ? targetFPS : 25;
         maxIterations = maxIterations ? maxIterations : 10;
         
